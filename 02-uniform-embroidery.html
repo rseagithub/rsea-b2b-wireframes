@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Uniforms & Embroidery</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.emp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.emp-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:12px;cursor:pointer;transition:all .15s}
+.emp-card:hover{border-color:var(--hivis)}
+.emp-card.selected{border-color:var(--hivis);background:rgba(212,230,0,.06);box-shadow:0 0 0 1px var(--hivis)}
+.emp-name{font-size:13px;font-weight:600;color:var(--white)}
+.emp-detail{font-size:11px;color:var(--text-dim);margin-top:2px}
+.garment-row{background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px;display:flex;gap:14px;cursor:pointer;transition:all .15s;margin-bottom:10px}
+.garment-row:hover{border-color:var(--hivis)}
+.garment-row.selected{border-color:var(--hivis);background:rgba(212,230,0,.06)}
+.garment-img{width:72px;height:72px;background:#2A2A2A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim);flex-shrink:0}
+.deco-option{background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px;cursor:pointer;transition:all .15s}
+.deco-option:hover{border-color:var(--hivis)}
+.deco-option.selected{border-color:var(--hivis);background:rgba(212,230,0,.06)}
+.placement{background:#2A2A2A;border:1px solid var(--card-border);border-radius:8px;padding:24px;text-align:center;position:relative;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.placement-dot{width:24px;height:24px;border-radius:50%;background:var(--hivis);border:2px solid var(--navy);position:absolute;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--navy)}
+.proof-box{background:#2A2A2A;border:2px dashed var(--card-border);border-radius:8px;padding:28px;text-align:center;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.proof-box.approved{border-color:var(--green);border-style:solid;background:rgba(74,222,128,.06)}
+.colour-dot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid #444;transition:border-color .15s}
+.colour-dot.selected{border-color:var(--hivis);box-shadow:0 0 0 2px var(--hivis)}
+.step-content{display:none}
+.step-content.active{display:block}
+</style>
+</head>
+<body>
+
+<div class="wf-bar">
+  <div class="wf-bar-left">
+    <h1>Sarah — Uniform & embroidery order flow (5 steps)</h1>
+    <p>Mid-fidelity wireframe · Largest custom build · No Magento native equivalent</p>
+  </div>
+  <div class="wf-toggle">
+    <button class="active" data-mode="annotated">Annotated</button>
+    <button data-mode="clean">Clean view</button>
+  </div>
+</div>
+
+<div class="topbar">
+  <span class="logo-pill">R//</span>
+  <span class="logo-text">RSEA Safety</span>
+  <a href="#" class="topbar-btn accent">My account</a>
+  <a href="03-plp.html" class="topbar-btn">Browse all products</a>
+  <span class="topbar-spacer"></span>
+  <span class="topbar-account">Dawson Electrical — Account #40291</span>
+  <div class="avatar">SL</div>
+</div>
+
+<nav class="subnav">
+  <a href="01-dashboard.html">Dashboard</a>
+  <a href="#">Orders</a>
+  <a href="02-uniform-embroidery.html" class="active">Uniforms</a>
+  <a href="#">Budgets</a>
+  <a href="#">Approvals <span class="badge">3</span></a>
+  <a href="#">Compliance docs</a>
+  <a href="#">Reports</a>
+  <a href="#">Users</a>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group">
+      <div class="sb-label">Quick Access</div>
+      <a href="01-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a>
+      <a href="03-plp.html" class="sb-link"><span class="sb-dot blue"></span> Place an order</a>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Saved lists</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-label">Manage</div>
+      <a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals <span class="sb-badge">3</span></a>
+      <a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a>
+      <a href="02-uniform-embroidery.html" class="sb-link active"><span class="sb-dot green"></span> Uniforms & logos</a>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Team members</a>
+    </div>
+    <div class="acct-rep" style="margin-top:20px">
+      <div class="acct-rep-head">Your account rep</div>
+      <div class="acct-rep-name">Marcus T.</div>
+      <div class="acct-rep-role">RSEA Account Manager</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="01-dashboard.html">Dashboard</a> / Uniform & Embroidery Order</div>
+    <div class="page-header flex-between">
+      <h1>Uniform & Embroidery Order</h1>
+      <span class="note">Biggest custom build
+        <span class="note-popup"><strong>Build note</strong>Entire 5-step flow is custom. No Magento native equivalent. Largest single module in the platform.<span class="magento">Custom: uniform_embroidery module (full custom)</span></span>
+      </span>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="steps" id="stepIndicator">
+      <div class="step active" data-step="1"><div class="step-num">1</div> Select employees</div>
+      <div class="step-line"></div>
+      <div class="step" data-step="2"><div class="step-num">2</div> Select garments</div>
+      <div class="step-line"></div>
+      <div class="step" data-step="3"><div class="step-num">3</div> Decoration setup</div>
+      <div class="step-line"></div>
+      <div class="step" data-step="4"><div class="step-num">4</div> Proof approval</div>
+      <div class="step-line"></div>
+      <div class="step" data-step="5"><div class="step-num">5</div> Confirm & submit</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step-content active" data-step="1">
+      <div class="card">
+        <div class="card-header">
+          <h3>Select employees</h3>
+          <div class="flex-gap">
+            <input type="text" placeholder="Search employees..." style="width:180px">
+            <select><option>All sites</option><option>Head Office</option><option>Ringwood</option><option>Dandenong</option></select>
+          </div>
+        </div>
+        <span class="note">Employee profiles
+          <span class="note-popup"><strong>Logic note</strong>Employee list from uniform entitlement profiles — not Magento user accounts. Stores name, site, role, size chart, entitlement balance.<span class="magento">Custom: employee_entitlement_profiles</span></span>
+        </span>
+        <div class="emp-grid" style="margin-top:12px">
+          <div class="emp-card selected"><div class="emp-name">Mike Davidson</div><div class="emp-detail">Head Office · Electrician</div><div class="emp-detail">Top: L · Boot: 10 · 3 items remaining</div></div>
+          <div class="emp-card selected"><div class="emp-name">Chris Palmer</div><div class="emp-detail">Ringwood · Apprentice</div><div class="emp-detail">Top: M · Boot: 9 · 5 items remaining</div></div>
+          <div class="emp-card"><div class="emp-name">Jake Thompson</div><div class="emp-detail">Head Office · Electrician</div><div class="emp-detail">Top: XL · Boot: 11 · 2 items remaining</div></div>
+          <div class="emp-card"><div class="emp-name">Tina Nguyen</div><div class="emp-detail">Dandenong · Office Admin</div><div class="emp-detail">Top: S · Boot: 7 · 4 items remaining</div></div>
+          <div class="emp-card"><div class="emp-name">Rob Martin</div><div class="emp-detail">Ringwood · Foreman</div><div class="emp-detail">Top: XXL · Boot: 12 · 1 item remaining</div></div>
+          <div class="emp-card"><div class="emp-name">Lisa Park</div><div class="emp-detail">Dandenong · Electrician</div><div class="emp-detail">Top: M · Boot: 8 · 5 items remaining</div></div>
+        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:var(--text-mid)">2 employees selected</span>
+          <button class="btn btn-primary" onclick="goToStep(2)">Next: Select garments →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-content" data-step="2">
+      <div class="card">
+        <div class="card-header"><h3>Select garments</h3><span class="apl">APL items only</span></div>
+        <span class="note">APL filtering<span class="note-popup"><strong>Logic note</strong>Only APL-approved uniform items shown. Sizes auto-matched to employee profiles. Out-of-stock sizes show warning.<span class="magento">Magento: SharedCatalog → category "uniforms"</span></span></span>
+        <div style="margin-top:12px">
+          <div class="garment-row selected">
+            <div class="garment-img">👕</div>
+            <div style="flex:1"><div style="font-weight:600;color:var(--white)">KingGee Workcool 2 Hi-Vis Shirt</div><div style="font-size:11px;color:var(--text-dim)">SKU: KG-WC2-HV · Yellow/Navy</div><div style="margin-top:4px"><strong style="color:var(--white)">$48.50</strong> <span style="text-decoration:line-through;color:var(--text-dim);font-size:12px">RRP $62.00</span></div><div style="margin-top:4px"><span class="apl">APL</span> <span style="font-size:11px;color:var(--text-mid);margin-left:6px">🧵 Embroidery compatible</span></div></div>
+            <div style="font-size:11px;color:var(--text-dim);text-align:right">Mike: L ✓<br>Chris: M ✓</div>
+          </div>
+          <div class="garment-row">
+            <div class="garment-img">👖</div>
+            <div style="flex:1"><div style="font-weight:600;color:var(--white)">KingGee Workcool Pro Pant</div><div style="font-size:11px;color:var(--text-dim)">SKU: KG-WCP-NV · Navy</div><div style="margin-top:4px"><strong style="color:var(--white)">$52.00</strong> <span style="text-decoration:line-through;color:var(--text-dim);font-size:12px">RRP $68.00</span></div><div style="margin-top:4px"><span class="apl">APL</span></div></div>
+            <div style="font-size:11px;color:var(--text-dim);text-align:right">Mike: 34 ✓<br>Chris: 30 ✓</div>
+          </div>
+          <div class="garment-row">
+            <div class="garment-img">🥾</div>
+            <div style="flex:1"><div style="font-weight:600;color:var(--white)">Steel Blue Argyle Zip Safety Boot</div><div style="font-size:11px;color:var(--text-dim)">SKU: SB-AZ-WHT · Wheat</div><div style="margin-top:4px"><strong style="color:var(--white)">$189.00</strong> <span style="text-decoration:line-through;color:var(--text-dim);font-size:12px">RRP $219.00</span></div><div style="margin-top:4px"><span class="apl">APL</span></div></div>
+            <div style="font-size:11px;color:var(--text-dim);text-align:right">Mike: 10 ✓<br>Chris: 9 ✓</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="goToStep(1)">← Back</button><button class="btn btn-primary" onclick="goToStep(3)">Next: Decoration setup →</button></div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-content" data-step="3">
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Decoration type</h3>
+          <span class="note">Decoration options<span class="note-popup"><strong>Logic note</strong>Embroidery = thread, premium, durable. Heat Press = vinyl, lower cost, faster. Selection affects pricing, lead time, and placement positions. Logo library is account-level.<span class="magento">Custom: decoration_config</span></span></span>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <div class="deco-option selected"><div style="font-weight:600;color:var(--white)">🧵 Embroidery</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">Thread-based · Premium · +$8.50/position</div></div>
+            <div class="deco-option"><div style="font-weight:600;color:var(--white)">🔥 Heat Press</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">Vinyl transfer · Cost-effective · +$5.00/position</div></div>
+          </div>
+          <h3 style="margin:18px 0 10px;color:var(--white)">Logo library</h3>
+          <span class="note">Approved logos<span class="note-popup"><strong>Logic note</strong>Account-level library. Sarah uploads (AI/EPS/PNG). RSEA validates stitch count. Only "Approved" logos can be placed.<span class="magento">Custom: logo_library → approval_status</span></span></span>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px">
+            <div style="background:#2A2A2A;border:2px solid var(--hivis);border-radius:6px;padding:12px;text-align:center;cursor:pointer"><div style="font-size:22px">🏢</div><div style="font-size:11px;font-weight:600;color:var(--white);margin-top:4px">Dawson Logo</div><span class="pill pill-green" style="font-size:9px;margin-top:4px">Approved</span></div>
+            <div style="background:#2A2A2A;border:1px solid var(--card-border);border-radius:6px;padding:12px;text-align:center;cursor:pointer"><div style="font-size:22px">⚡</div><div style="font-size:11px;font-weight:600;color:var(--white);margin-top:4px">Dawson Icon</div><span class="pill pill-green" style="font-size:9px;margin-top:4px">Approved</span></div>
+            <div style="background:#2A2A2A;border:1px solid var(--card-border);border-radius:6px;padding:12px;text-align:center;opacity:.5"><div style="font-size:22px">🆕</div><div style="font-size:11px;font-weight:600;color:var(--white);margin-top:4px">New Logo v2</div><span class="pill pill-amber" style="font-size:9px;margin-top:4px">Pending</span></div>
+          </div>
+          <button class="btn btn-outline btn-sm" style="margin-top:10px">+ Upload new logo</button>
+          <h3 style="margin:18px 0 8px;color:var(--white)">Thread colour</h3>
+          <div style="display:flex;gap:8px">
+            <div class="colour-dot" style="background:#FFF"></div>
+            <div class="colour-dot selected" style="background:#1A1A1A"></div>
+            <div class="colour-dot" style="background:#1E3A5F"></div>
+            <div class="colour-dot" style="background:#DC2626"></div>
+            <div class="colour-dot" style="background:#D4E600"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Placement diagram</h3>
+          <span class="note">Positions<span class="note-popup"><strong>Logic note</strong>Garment-specific positions. Shirt = 4 (L/R chest, L/R sleeve). Jacket adds back. Each dot assigns a logo + decoration type. Schematic, not photo.<span class="magento">Custom: placement_diagram</span></span></span>
+          <div class="placement" style="margin-top:10px">
+            <div style="font-size:56px;opacity:.3">👕</div>
+            <div style="font-size:11px;color:var(--text-dim)">KingGee Workcool 2 Hi-Vis Shirt</div>
+            <div class="placement-dot" style="top:70px;left:36%">1</div>
+            <div class="placement-dot" style="top:70px;right:36%">2</div>
+            <div class="placement-dot" style="top:100px;left:16%">3</div>
+            <div class="placement-dot" style="top:100px;right:16%">4</div>
+          </div>
+          <div style="margin-top:14px;font-size:13px">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--white)"><strong>1. Left Chest:</strong> Dawson Logo (Embroidery)</span><span style="color:var(--text-mid)">+$8.50</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--white)"><strong>2. Right Chest:</strong> Employee Name (Embroidery)</span><span style="color:var(--text-mid)">+$8.50</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><span style="color:var(--text-dim)"><strong>3. Left Sleeve:</strong> Not assigned</span><span style="color:var(--text-dim)">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="goToStep(2)">← Back</button><button class="btn btn-primary" onclick="goToStep(4)">Next: Review proofs →</button></div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-content" data-step="4">
+      <div class="card">
+        <div class="card-header"><h3>Digital proof approval</h3><span class="pill pill-amber">2 proofs to approve</span></div>
+        <span class="note">Proof gate<span class="note-popup"><strong>Key decision</strong>Proofs are system-generated schematics (not photorealistic). Both must be approved before submit. Open question: schematic vs formal proof from RSEA team?<span class="magento">Custom: proof_approval_gate</span></span></span>
+        <div class="grid-2" style="margin-top:14px">
+          <div>
+            <div style="font-weight:600;color:var(--white);margin-bottom:8px">Mike Davidson — KingGee Workcool 2</div>
+            <div class="proof-box approved">
+              <div style="font-size:40px">👕</div>
+              <div style="font-size:13px;font-weight:600;color:var(--green)">✓ Proof approved</div>
+              <div style="font-size:11px;color:var(--text-dim)">Left chest: Dawson Logo · Right chest: "Mike D."</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:600;color:var(--white);margin-bottom:8px">Chris Palmer — KingGee Workcool 2</div>
+            <div class="proof-box">
+              <div style="font-size:40px">👕</div>
+              <div style="font-size:13px;color:var(--text-dim)">System-generated schematic proof</div>
+              <div style="font-size:11px;color:var(--text-dim)">Left chest: Dawson Logo · Right chest: "Chris P."</div>
+            </div>
+            <div style="margin-top:8px;display:flex;gap:6px">
+              <button class="btn btn-primary btn-sm">✓ Approve proof</button>
+              <button class="btn btn-outline btn-sm">Request revision</button>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="goToStep(3)">← Back</button><button class="btn btn-primary" onclick="goToStep(5)">Next: Confirm & submit →</button></div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-content" data-step="5">
+      <div class="grid-sidebar">
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Order summary</h3>
+          <table class="data-table">
+            <thead><tr><th>Employee</th><th>Item</th><th>Decoration</th><th>Site</th><th>Price</th></tr></thead>
+            <tbody>
+              <tr><td><strong style="color:var(--white)">Mike Davidson</strong></td><td>KingGee Workcool 2 (L)<br><span style="font-size:11px;color:var(--text-dim)">+ Pro Pant (34)</span></td><td>Embroidery ×2</td><td>Head Office</td><td><strong style="color:var(--white)">$117.50</strong></td></tr>
+              <tr><td><strong style="color:var(--white)">Chris Palmer</strong></td><td>KingGee Workcool 2 (M)<br><span style="font-size:11px;color:var(--text-dim)">+ Pro Pant (30)</span></td><td>Embroidery ×2</td><td>Ringwood</td><td><strong style="color:var(--white)">$117.50</strong></td></tr>
+            </tbody>
+          </table>
+          <span class="note" style="margin-top:12px">Multi-site delivery<span class="note-popup"><strong>Logic note</strong>Items auto-split by employee site. Each site = separate shipment. Decoration items have longer lead time.<span class="magento">Magento: Multishipping + Custom: site_delivery_split</span></span></span>
+        </div>
+        <div>
+          <div class="card">
+            <h3 style="margin-bottom:12px;color:var(--white)">Order total</h3>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0"><span>Garments (4 items)</span><span style="color:var(--white)">$201.00</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0"><span>Embroidery (4 positions)</span><span style="color:var(--white)">$34.00</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-top:1px solid var(--card-border);margin-top:8px"><strong style="color:var(--white)">Total (excl. GST)</strong><strong style="font-size:16px;color:var(--white)">$235.00</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-dim)"><span>GST</span><span>$23.50</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700;padding:4px 0;color:var(--white)"><span>Total (incl. GST)</span><span>$258.50</span></div>
+          </div>
+          <div class="approval-panel" style="margin-bottom:12px">✓ <div><strong style="display:block">Within approval limit</strong><span style="font-size:12px">$258.50 is under your $2,000 self-approval threshold.</span></div></div>
+          <div style="margin-bottom:12px"><label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;color:var(--white)">PO Number</label><input type="text" value="PO-DE-2024-089" style="width:100%"></div>
+          <div style="margin-bottom:12px"><label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;color:var(--white)">Cost Centre</label><select style="width:100%"><option>Uniforms — General</option><option>PPE — Safety</option></select></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px" onclick="navigateTo('06-order-confirmation.html')">Submit uniform order</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:8px">Save as draft</button>
+        </div>
+      </div>
+      <div style="margin-top:16px"><button class="btn btn-outline" onclick="goToStep(4)">← Back to proofs</button></div>
+    </div>
+
+  </main>
+</div>
+
+<div class="annotations-drawer">
+  <details>
+    <summary>All annotations — Uniform & Embroidery flow (6 notes)</summary>
+    <div class="ann-list">
+      <div class="ann-item"><strong>Largest custom build</strong>Entire 5-step flow is custom. No Magento native equivalent.<br><span class="magento">Custom: uniform_embroidery module</span></div>
+      <div class="ann-item"><strong>Employee profiles</strong>Uniform profiles ≠ Magento users. Store size chart, site, role, entitlement balance.<br><span class="magento">Custom: employee_entitlement_profiles</span></div>
+      <div class="ann-item"><strong>APL-filtered garments</strong>Only approved product list items shown. Sizes auto-matched.<br><span class="magento">Magento: SharedCatalog → category</span></div>
+      <div class="ann-item"><strong>Logo library + approval</strong>Account-level. Sarah uploads, RSEA validates. Only "Approved" usable.<br><span class="magento">Custom: logo_library</span></div>
+      <div class="ann-item"><strong>Proof gate — Open question</strong>System schematic vs formal proof from RSEA team. Both must be approved.<br><span class="magento">Custom: proof_approval_gate</span></div>
+      <div class="ann-item"><strong>Multi-site delivery split</strong>Items auto-grouped by employee site. Decoration = longer lead time.<br><span class="magento">Magento: Multishipping + Custom</span></div>
+    </div>
+  </details>
+</div>
+
+<div class="next-screen">
+  <a href="01-dashboard.html" class="btn btn-outline">← Dashboard</a>
+  <a href="03-plp.html" class="btn btn-primary">Browse catalogue →</a>
+</div>
+
+<script src="shared.js"></script>
+<script>
+function goToStep(n){
+  document.querySelectorAll('.step-content').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.step-content[data-step="'+n+'"]').classList.add('active');
+  document.querySelectorAll('.step').forEach(s=>{
+    const sn=parseInt(s.dataset.step);
+    s.classList.remove('active','done');
+    if(sn===n)s.classList.add('active');
+    else if(sn<n)s.classList.add('done');
+  });
+  document.querySelectorAll('.step-line').forEach((c,i)=>{c.classList.toggle('done',i<n-1)});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Screen Flow Map</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.flow-filters{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.flow-filter{padding:5px 12px;border:1px solid var(--card-border);border-radius:16px;font-size:11px;font-weight:500;cursor:pointer;background:var(--card-bg);color:var(--text-mid);transition:all .15s}
+.flow-filter:hover{border-color:var(--text-mid)}
+.flow-filter.active{background:var(--white);color:var(--navy);border-color:var(--white)}
+.flow-canvas{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:32px;min-height:500px}
+.flow-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:28px}
+.flow-node{background:#2A2A2A;border:2px solid var(--card-border);border-radius:10px;padding:12px 16px;min-width:140px;text-align:center;cursor:pointer;transition:all .2s}
+.flow-node:hover{border-color:var(--hivis);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.flow-node.wf{border-color:var(--green)}
+.flow-node.nwf{border-color:var(--amber);border-style:dashed}
+.flow-node .fn-icon{font-size:18px;margin-bottom:4px}
+.flow-node .fn-label{font-size:12px;font-weight:600;color:var(--white)}
+.flow-node .fn-status{margin-top:4px}
+.flow-arrow{color:var(--text-dim);font-size:18px}
+.flow-arrow-down{text-align:center;margin:-12px 0 -4px;font-size:18px;color:var(--text-dim)}
+.legend{display:flex;gap:16px;margin-bottom:14px;font-size:11px;color:var(--text-mid)}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-swatch{width:14px;height:14px;border-radius:3px;border:2px solid}
+.detail-panel{position:fixed;top:0;right:-460px;width:460px;height:100vh;background:var(--card-bg);border-left:1px solid var(--card-border);box-shadow:-4px 0 24px rgba(0,0,0,.4);z-index:300;padding:24px;overflow-y:auto;transition:right .3s}
+.detail-panel.open{right:0}
+.detail-close{position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-dim);padding:4px 8px}
+.feature-tag{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;margin:2px;background:#2A2A2A;color:var(--text)}
+.feature-tag.native{background:var(--blue-bg);color:var(--blue)}
+.feature-tag.custom{background:var(--red-bg);color:var(--red)}
+.feature-tag.diff{background:rgba(212,230,0,.15);color:var(--hivis)}
+.persona-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;margin:2px;border:1px solid var(--card-border);color:var(--text-mid)}
+.complexity-bar{display:flex;gap:3px;margin-top:4px}
+.complexity-dot{width:12px;height:12px;border-radius:2px;background:#333}
+.complexity-dot.on{background:var(--amber)}
+.complexity-dot.on.high{background:var(--red)}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:290;display:none}
+.overlay.show{display:block}
+.dsection{margin-top:16px}
+.dsection h4{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="wf-bar"><div class="wf-bar-left"><h1>B2B Portal — Screen flow map · All 12 screens</h1><p>Click any node for features, Magento config, complexity · Journey filters</p></div><div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div></div>
+
+<div class="topbar"><span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span><span class="topbar-spacer"></span><span class="topbar-account">Dawson Electrical — Account #40291</span><div class="avatar">SL</div></div>
+<nav class="subnav"><a href="01-dashboard.html">Dashboard</a><a href="#">Orders</a><a href="02-uniform-embroidery.html">Uniforms</a><a href="#">Budgets</a><a href="#">Approvals <span class="badge">3</span></a><a href="#">Compliance docs</a><a href="#">Reports</a><a href="#">Users</a></nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div><a href="01-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a></div>
+    <div class="sb-group"><div class="sb-label">Manage</div><a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals</a><a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a></div>
+  </aside>
+
+  <main class="main">
+    <div class="page-header"><h1>Screen Flow Map</h1><p>Click any screen to view features, Magento config, and build complexity</p></div>
+
+    <div class="flow-filters">
+      <span style="font-size:11px;color:var(--text-dim);padding:5px 0">Filter:</span>
+      <div class="flow-filter active">All screens</div>
+      <div class="flow-filter">Sarah (SME)</div>
+      <div class="flow-filter">Craig (Enterprise)</div>
+      <div class="flow-filter">Uniform flow</div>
+      <div class="flow-filter">Budget & approvals</div>
+      <div class="flow-filter">Compliance</div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch" style="border-color:var(--green);background:var(--green-bg)"></div> Wireframed</div>
+      <div class="legend-item"><div class="legend-swatch" style="border-color:var(--amber);border-style:dashed;background:var(--amber-bg)"></div> Not yet</div>
+    </div>
+
+    <div class="flow-canvas">
+      <div class="flow-row">
+        <div class="flow-node nwf" onclick="openD('login')"><div class="fn-icon">🔐</div><div class="fn-label">Login / SSO</div><div class="fn-status"><span class="pill pill-amber" style="font-size:9px">Not wireframed</span></div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node wf" onclick="openD('dashboard')"><div class="fn-icon">📊</div><div class="fn-label">Dashboard</div><div class="fn-status"><span class="pill pill-green" style="font-size:9px">Wireframed</span></div></div>
+      </div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-row">
+        <div class="flow-node wf" onclick="openD('plp')"><div class="fn-icon">📦</div><div class="fn-label">Product Listing</div><div class="fn-status"><span class="pill pill-green" style="font-size:9px">Wireframed</span></div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node wf" onclick="openD('pdp')"><div class="fn-icon">🔍</div><div class="fn-label">Product Detail</div><div class="fn-status"><span class="pill pill-green" style="font-size:9px">Wireframed</span></div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node wf" onclick="openD('checkout')"><div class="fn-icon">🛒</div><div class="fn-label">Checkout</div><div class="fn-status"><span class="pill pill-green" style="font-size:9px">Wireframed</span></div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node wf" onclick="openD('confirm')"><div class="fn-icon">✅</div><div class="fn-label">Confirmation</div><div class="fn-status"><span class="pill pill-green" style="font-size:9px">Wireframed</span></div></div>
+      </div>
+      <div class="flow-arrow-down">↓ ↗</div>
+      <div class="flow-row">
+        <div class="flow-node wf" onclick="openD('uniform')"><div class="fn-icon">👕</div><div class="fn-label">Uniforms</div><div class="fn-status"><span class="pill pill-green" style="font-size:9px">Wireframed</span></div></div>
+        <div class="flow-node nwf" onclick="openD('budget')"><div class="fn-icon">💰</div><div class="fn-label">Budgets</div><div class="fn-status"><span class="pill pill-amber" style="font-size:9px">High priority</span></div></div>
+        <div class="flow-node nwf" onclick="openD('approvals')"><div class="fn-icon">✋</div><div class="fn-label">Approvals</div><div class="fn-status"><span class="pill pill-amber" style="font-size:9px">Not wireframed</span></div></div>
+      </div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-row">
+        <div class="flow-node nwf" onclick="openD('orders')"><div class="fn-icon">📋</div><div class="fn-label">Orders</div><div class="fn-status"><span class="pill pill-amber" style="font-size:9px">Not wireframed</span></div></div>
+        <div class="flow-node nwf" onclick="openD('compliance')"><div class="fn-icon">📑</div><div class="fn-label">Compliance</div><div class="fn-status"><span class="pill pill-amber" style="font-size:9px">Differentiator</span></div></div>
+        <div class="flow-node nwf" onclick="openD('reports')"><div class="fn-icon">📈</div><div class="fn-label">Reports</div><div class="fn-status"><span class="pill pill-amber" style="font-size:9px">Not wireframed</span></div></div>
+        <div class="flow-node nwf" onclick="openD('users')"><div class="fn-icon">👥</div><div class="fn-label">Users</div><div class="fn-status"><span class="pill pill-amber" style="font-size:9px">Not wireframed</span></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeD()"></div>
+<div class="detail-panel" id="dp"><button class="detail-close" onclick="closeD()">✕</button><div id="dc"></div></div>
+
+<div class="next-screen"><a href="01-dashboard.html" class="btn btn-outline">← Dashboard</a><a href="index.html" class="btn btn-primary">Wireframe index →</a></div>
+
+<script src="shared.js"></script>
+<script>
+const S={
+login:{t:'Login / SSO',i:'🔐',s:'Not wireframed',d:'Authentication and role-aware redirect.',f:[{n:'Email/password',t:'native'},{n:'SSO integration',t:'custom'},{n:'Role redirect',t:'custom'}],m:'Magento Customer + SAML/OAuth SSO extension.',c:2,p:['All'],l:null},
+dashboard:{t:'Dashboard (Sarah)',i:'📊',s:'Wireframed',d:'Spend metrics, budgets, approvals, quick actions, reorder suggestions, account rep.',f:[{n:'Spend metrics',t:'custom'},{n:'Budget by site',t:'custom'},{n:'Inline approvals',t:'native'},{n:'Quick actions',t:'custom'},{n:'Predictive reorder',t:'diff'},{n:'Account rep',t:'diff'}],m:'B2B Company + Custom dashboard widgets + PurchaseOrder module.',c:3,p:['Sarah','Dave','Karen'],l:'01-dashboard.html'},
+plp:{t:'Product Listing',i:'📦',s:'Wireframed',d:'APL catalogue, compliance filters, contract pricing, reorder signal, bulk select.',f:[{n:'APL catalogue',t:'native'},{n:'Compliance filters',t:'diff'},{n:'Contract pricing',t:'native'},{n:'Reorder signal',t:'custom'},{n:'Bulk select',t:'custom'},{n:'Grid/list',t:'native'}],m:'SharedCatalog for APL. Product attributes for compliance.',c:2,p:['Sarah','Craig','Brett','Geoff'],l:'03-plp.html'},
+pdp:{t:'Product Detail',i:'🔍',s:'Wireframed',d:'5 B2B tabs, live tier pricing, 3-button CTA, embroidery teaser.',f:[{n:'Product details',t:'native'},{n:'Compliance tab',t:'diff'},{n:'Volume pricing',t:'native'},{n:'Stock by store',t:'custom'},{n:'Order history',t:'custom'},{n:'3-button CTA',t:'custom'},{n:'Account rep panel',t:'diff'}],m:'Native PDP + custom tabs. Tier pricing JS. Store inventory WMS sync.',c:3,p:['Sarah','Craig','Brett'],l:'04-pdp.html'},
+checkout:{t:'Checkout',i:'🛒',s:'Wireframed',d:'3-step rail, multi-address, PO capture, budget warning, approval routing.',f:[{n:'Editable lines',t:'native'},{n:'Multi-address split',t:'native'},{n:'PO number',t:'native'},{n:'Cost centre',t:'custom'},{n:'Invoice on account',t:'native'},{n:'Budget warning',t:'custom'},{n:'Approval routing',t:'native'}],m:'B2B Checkout + PurchaseOrder + Multishipping + Custom budget check.',c:3,p:['Sarah','Craig','Geoff'],l:'05-checkout.html'},
+confirm:{t:'Order Confirmation',i:'✅',s:'Wireframed',d:'Adaptive timeline, what happens next, post-order actions.',f:[{n:'Adaptive timeline',t:'custom'},{n:'Summary cards',t:'custom'},{n:'What happens next',t:'diff'},{n:'Action tiles',t:'custom'},{n:'Rep notification',t:'custom'}],m:'Custom timeline + whats_next engine.',c:2,p:['Sarah','Craig','Dave'],l:'06-order-confirmation.html'},
+uniform:{t:'Uniforms & Embroidery',i:'👕',s:'Wireframed',d:'5-step flow. Largest custom build.',f:[{n:'Employee profiles',t:'custom'},{n:'APL garments',t:'native'},{n:'Embroidery/heat press',t:'custom'},{n:'Logo library',t:'custom'},{n:'Placement diagram',t:'custom'},{n:'Proof gate',t:'diff'}],m:'Fully custom. No Magento equivalent.',c:5,p:['Sarah','Donna','Karen'],l:'02-uniform-embroidery.html'},
+budget:{t:'Budget Management',i:'💰',s:'Not wireframed — HIGH PRIORITY',d:'Budget allocation by site, spend tracking, threshold alerts, increase requests.',f:[{n:'Budget by site',t:'custom'},{n:'Monthly/YTD spend',t:'custom'},{n:'Threshold alerts',t:'custom'},{n:'Increase request',t:'custom'}],m:'Fully custom. Second largest build.',c:4,p:['Sarah','Craig','Geoff'],l:null},
+approvals:{t:'Approvals',i:'✋',s:'Not wireframed',d:'Pending queue, inline approve/decline, audit trail.',f:[{n:'Approval queue',t:'native'},{n:'Inline approve',t:'custom'},{n:'Threshold config',t:'native'},{n:'Audit trail',t:'native'}],m:'Largely Magento B2B PurchaseOrder.',c:2,p:['Sarah','Craig'],l:null},
+orders:{t:'Orders & History',i:'📋',s:'Not wireframed',d:'Order log, filters, one-click reorder, invoice, tracking.',f:[{n:'Order log',t:'native'},{n:'One-click reorder',t:'custom'},{n:'Invoice download',t:'native'},{n:'Tracking',t:'native'}],m:'Largely native. Lowest effort.',c:1,p:['Sarah','Craig','Dave'],l:null},
+compliance:{t:'Compliance Hub',i:'📑',s:'Not wireframed — DIFFERENTIATOR',d:'SDS & cert library, filter by product/standard/expiry, bulk download.',f:[{n:'SDS library',t:'diff'},{n:'Cert library',t:'diff'},{n:'Filter/search',t:'custom'},{n:'Bulk download',t:'custom'},{n:'Expiry alerts',t:'custom'}],m:'Custom doc management. Key differentiator.',c:3,p:['Sarah','Brett','Geoff'],l:null},
+reports:{t:'Reports',i:'📈',s:'Not wireframed',d:'Spend by site/category/user, budget vs actuals, CSV export.',f:[{n:'Spend by site',t:'custom'},{n:'By category',t:'custom'},{n:'By user',t:'custom'},{n:'Budget vs actuals',t:'custom'},{n:'CSV export',t:'custom'}],m:'Custom. Data structured; charting is the work.',c:3,p:['Sarah','Craig','Geoff'],l:null},
+users:{t:'Users & Account',i:'👥',s:'Not wireframed',d:'Team management, roles, site access, APL requests.',f:[{n:'Team members',t:'native'},{n:'Roles',t:'native'},{n:'Site access',t:'native'},{n:'APL requests',t:'custom'},{n:'Notifications',t:'custom'}],m:'Largely native B2B Company. APL request adds complexity.',c:2,p:['Sarah','Craig'],l:null}
+};
+function openD(k){const d=S[k];if(!d)return;
+const dots=Array.from({length:5},(_,i)=>`<div class="complexity-dot ${i<d.c?'on':''} ${d.c>=4&&i<d.c?'high':''}"></div>`).join('');
+const feats=d.f.map(f=>`<span class="feature-tag ${f.t}">${f.n}</span>`).join('');
+const personas=d.p.map(p=>`<span class="persona-tag">${p}</span>`).join('');
+const lvl=['','Low','Low-Med','Medium','Med-High','High'][d.c];
+document.getElementById('dc').innerHTML=`
+<div style="font-size:32px;margin-bottom:8px">${d.i}</div>
+<h2 style="font-size:18px;color:var(--white)">${d.t}</h2>
+<div style="margin-top:4px"><span class="pill ${d.s.includes('Wireframed')&&!d.s.includes('Not')?'pill-green':'pill-amber'}" style="font-size:11px">${d.s}</span></div>
+<p style="margin-top:10px;font-size:13px;color:var(--text-mid)">${d.d}</p>
+${d.l?`<a href="${d.l}" class="btn btn-primary" style="margin-top:12px">View wireframe →</a>`:''}
+<div class="dsection"><h4>Features</h4><div>${feats}</div>
+<div style="margin-top:6px;font-size:9px;color:var(--text-dim)"><span class="feature-tag native" style="font-size:8px">Native</span> Magento <span class="feature-tag custom" style="font-size:8px">Custom</span> Build <span class="feature-tag diff" style="font-size:8px">Diff</span> Category-defining</div></div>
+<div class="dsection"><h4>Complexity</h4><div class="complexity-bar">${dots}</div><div style="font-size:11px;color:var(--text-mid);margin-top:4px">${lvl}</div></div>
+<div class="dsection"><h4>Personas</h4><div>${personas}</div></div>
+<div class="dsection"><h4>Magento config</h4><div style="background:var(--purple-bg);border-radius:6px;padding:10px;font-size:11px;color:var(--purple);font-family:monospace">${d.m}</div></div>`;
+document.getElementById('dp').classList.add('open');document.getElementById('overlay').classList.add('show')}
+function closeD(){document.getElementById('dp').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+</script>
+</body>
+</html>

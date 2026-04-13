@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Product Detail</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.pdp-layout{display:grid;grid-template-columns:1fr 380px;gap:24px}
+.pdp-gallery{background:#2A2A2A;border-radius:10px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px}
+.pdp-thumbs{display:flex;gap:6px;margin-top:8px}
+.pdp-thumb{width:56px;height:56px;background:#2A2A2A;border:1px solid var(--card-border);border-radius:4px;cursor:pointer}
+.pdp-thumb.active{border-color:var(--hivis);border-width:2px}
+.purchase-panel{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.tier-table{width:100%;border-collapse:collapse;font-size:12px}
+.tier-table th{text-align:left;padding:6px 8px;font-size:10px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--card-border)}
+.tier-table td{padding:6px 8px;border-bottom:1px solid var(--card-border);color:var(--text)}
+.tier-table tr.active-tier{background:var(--green-bg)}
+.tier-table tr.active-tier td{font-weight:600;color:var(--green)}
+.stock-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border);font-size:13px}
+.stock-row:last-child{border-bottom:none}
+.embroidery-teaser{background:linear-gradient(135deg,#2A2A2A,#333);border:1px solid var(--card-border);border-radius:8px;padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .15s}
+.embroidery-teaser:hover{border-color:var(--hivis)}
+.history-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--card-border);font-size:13px}
+.history-row:last-child{border-bottom:none}
+.qty-control{display:flex;align-items:center;gap:6px}
+.qty-btn{width:32px;height:32px;border:1px solid var(--card-border);border-radius:6px;background:var(--card-bg);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+<div class="wf-bar">
+  <div class="wf-bar-left"><h1>Sarah — Product detail page (PDP) · Steel Blue Argyle Zip</h1><p>Mid-fidelity wireframe · 5 B2B tabs · Live tier pricing · 3-button CTA hierarchy</p></div>
+  <div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div>
+</div>
+
+<div class="topbar">
+  <span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span><a href="#" class="topbar-btn accent">My account</a><a href="03-plp.html" class="topbar-btn">Browse all products</a><span class="topbar-spacer"></span><span class="topbar-account">Dawson Electrical — Account #40291</span><div class="avatar">SL</div>
+</div>
+<nav class="subnav"><a href="01-dashboard.html">Dashboard</a><a href="#">Orders</a><a href="02-uniform-embroidery.html">Uniforms</a><a href="#">Budgets</a><a href="#">Approvals <span class="badge">3</span></a><a href="#">Compliance docs</a><a href="#">Reports</a><a href="#">Users</a></nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div><a href="01-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a><a href="03-plp.html" class="sb-link active"><span class="sb-dot blue"></span> Place an order</a></div>
+    <div class="sb-group"><div class="sb-label">Manage</div><a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals <span class="sb-badge">3</span></a><a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a><a href="02-uniform-embroidery.html" class="sb-link"><span class="sb-dot green"></span> Uniforms & logos</a></div>
+    <div class="acct-rep" style="margin-top:20px"><div class="acct-rep-head">Your account rep</div><div class="acct-rep-name">Marcus T.</div></div>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="01-dashboard.html">Dashboard</a> / <a href="03-plp.html">Safety Footwear</a> / Steel Blue Argyle Zip</div>
+
+    <div class="pdp-layout">
+      <div>
+        <div class="pdp-gallery">🥾 Product Image — Steel Blue Argyle Zip</div>
+        <div class="pdp-thumbs"><div class="pdp-thumb active"></div><div class="pdp-thumb"></div><div class="pdp-thumb"></div><div class="pdp-thumb"></div></div>
+
+        <!-- 5 Tabs -->
+        <div style="margin-top:24px">
+          <div class="tabs">
+            <button class="active" data-tab="details">Product details</button>
+            <button data-tab="compliance">Compliance & SDS</button>
+            <button data-tab="pricing">Volume pricing</button>
+            <button data-tab="stock">Stock by store</button>
+            <button data-tab="history">Order history</button>
+          </div>
+
+          <div class="tab-panel active" data-panel="details">
+            <h3 style="font-size:15px;color:var(--white);margin-bottom:10px">Steel Blue Argyle Zip Safety Boot</h3>
+            <p style="font-size:13px;color:var(--text-mid);margin-bottom:14px">Premium zip-sided safety boot with Trisole® Comfort Technology. Steel toe cap, TPU outsole, full-grain leather upper. Airport-friendly.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
+              <div><strong style="color:var(--white)">Brand:</strong> Steel Blue</div><div><strong style="color:var(--white)">Colour:</strong> Wheat</div>
+              <div><strong style="color:var(--white)">Material:</strong> Full-grain leather</div><div><strong style="color:var(--white)">Sole:</strong> TPU outsole</div>
+              <div><strong style="color:var(--white)">Toe Cap:</strong> Steel</div><div><strong style="color:var(--white)">Closure:</strong> Zip + lace</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="compliance">
+            <span class="note">Differentiator<span class="note-popup"><strong>Compliance tab — Differentiator</strong>Product-level SDS, test certs, compliance docs. Linked to Compliance Hub. Expiry tracking is custom.<span class="magento">Custom: product_compliance_docs</span></span></span>
+            <h3 style="font-size:14px;color:var(--white);margin:10px 0">Standards</h3>
+            <div style="display:flex;gap:6px;margin-bottom:14px"><span class="compliance-tag" style="font-size:11px;padding:4px 10px">AS/NZS 2210.3:2019</span><span class="compliance-tag" style="font-size:11px;padding:4px 10px">Anti-static</span></div>
+            <h3 style="font-size:14px;color:var(--white);margin-bottom:10px">Documents</h3>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:#2A2A2A;border-radius:6px;font-size:13px"><div><strong style="color:var(--white)">📄 Test Certificate</strong><br><span style="font-size:11px;color:var(--text-dim)">AS/NZS 2210.3 · Expires Dec 2025</span></div><button class="btn btn-outline btn-sm">Download</button></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:#2A2A2A;border-radius:6px;font-size:13px"><div><strong style="color:var(--white)">📄 Safety Data Sheet</strong><br><span style="font-size:11px;color:var(--text-dim)">SDS Rev 4.2 · Updated Mar 2024</span></div><button class="btn btn-outline btn-sm">Download</button></div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="pricing">
+            <span class="note">Tier pricing<span class="note-popup"><strong>Logic note</strong>Volume tiers per product per customer group. Active tier highlights as qty changes. RRP always shown.<span class="magento">Magento: B2B → tier_pricing</span></span></span>
+            <table class="tier-table" style="margin-top:10px">
+              <thead><tr><th>Quantity</th><th>Unit Price</th><th>Discount</th><th>vs RRP</th></tr></thead>
+              <tbody>
+                <tr><td>1–5</td><td>$189.00</td><td>Base</td><td>14% off</td></tr>
+                <tr class="active-tier"><td>6–11</td><td>$179.00</td><td>5%</td><td>18% off</td></tr>
+                <tr><td>12–23</td><td>$169.00</td><td>11%</td><td>23% off</td></tr>
+                <tr><td>24+</td><td>$159.00</td><td>16%</td><td>27% off</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-panel" data-panel="stock">
+            <span class="note">Stock by store<span class="note-popup"><strong>Logic note</strong>Store-level inventory sync with WMS. Medium-High complexity. Click & Collect tied to this.<span class="magento">Custom: store_inventory_sync</span></span></span>
+            <div style="font-size:12px;color:var(--text-dim);margin:10px 0">Size 10 (Wheat)</div>
+            <div class="stock-row"><span style="color:var(--white)"><strong>Dandenong</strong> — 3.2km</span><span class="pill pill-green">12 in stock</span></div>
+            <div class="stock-row"><span style="color:var(--white)"><strong>Ringwood</strong> — 8.1km</span><span class="pill pill-green">8 in stock</span></div>
+            <div class="stock-row"><span style="color:var(--white)"><strong>Doncaster</strong> — 12.4km</span><span class="pill pill-amber">3 in stock</span></div>
+            <div class="stock-row"><span style="color:var(--white)"><strong>Melbourne CBD</strong> — 18.2km</span><span class="pill pill-red">0 in stock</span></div>
+            <div class="stock-row"><span style="color:var(--white)"><strong>Warehouse (DC)</strong></span><span class="pill pill-green">142 in stock</span></div>
+          </div>
+
+          <div class="tab-panel" data-panel="history">
+            <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">Dawson Electrical purchase history</div>
+            <div class="history-row"><div><strong style="color:var(--white)">ORD-40291-0284</strong><br><span style="font-size:11px;color:var(--text-dim)">15 Mar · Mike D. · Size 10</span></div><div style="text-align:right;color:var(--white)">Qty: 1<br><span style="font-size:11px;color:var(--text-dim)">$189.00</span></div></div>
+            <div class="history-row"><div><strong style="color:var(--white)">ORD-40291-0198</strong><br><span style="font-size:11px;color:var(--text-dim)">15 Nov · Bulk · Mixed sizes</span></div><div style="text-align:right;color:var(--white)">Qty: 6<br><span style="font-size:11px;color:var(--text-dim)">$179.00/ea</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Purchase Panel -->
+      <div>
+        <div class="purchase-panel">
+          <div><span class="apl">APL — Approved Product</span> <span class="note" style="margin-left:4px">Confirmed<span class="note-popup"><strong>APL badge</strong>Green = in SharedCatalog. Amber = not in APL with request CTA.<span class="magento">Magento: SharedCatalog</span></span></span></div>
+          <h2 style="font-size:18px;color:var(--white);line-height:1.3">Steel Blue Argyle Zip Safety Boot — Wheat</h2>
+          <div style="font-size:12px;color:var(--text-dim)">SKU: SB-AZ-WHT</div>
+          <div style="background:#2A2A2A;border-radius:8px;padding:14px">
+            <div style="font-size:11px;color:var(--text-dim)">Your contract price</div>
+            <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:28px;font-weight:700;color:var(--white)">$179.00</span><span style="text-decoration:line-through;color:var(--text-dim);font-size:14px">RRP $219.00</span></div>
+            <div style="font-size:11px;color:var(--green);margin-top:2px">Tier 2 active (qty 6–11)</div>
+          </div>
+          <div><label style="font-size:12px;font-weight:600;color:var(--white);display:block;margin-bottom:4px">Size</label><select style="width:100%"><option>7</option><option>8</option><option>9</option><option selected>10</option><option>11</option><option>12</option></select></div>
+          <div><label style="font-size:12px;font-weight:600;color:var(--white);display:block;margin-bottom:4px">Quantity</label>
+            <div class="qty-control"><button class="qty-btn">−</button><input type="number" value="6" style="width:50px;text-align:center"><button class="qty-btn">+</button><span style="font-size:13px;color:var(--text-mid);margin-left:8px">= $1,074.00</span></div>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:14px" onclick="navigateTo('05-checkout.html')">Add to cart</button>
+          <button class="btn btn-dark" style="width:100%;justify-content:center;padding:12px" onclick="navigateTo('02-uniform-embroidery.html')">Order with embroidery</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center">Save to list</button>
+          <span class="note">3-button hierarchy<span class="note-popup"><strong>Design decision</strong>Yellow = Add to Cart. White/Black = Order with Embroidery. Ghost = Save to List. Consistent across all PDPs.<span class="magento">UX Pattern</span></span></span>
+          <div class="embroidery-teaser" onclick="navigateTo('02-uniform-embroidery.html')">
+            <div style="font-size:24px">🧵</div>
+            <div><div style="font-weight:600;color:var(--white);font-size:13px">Add embroidery</div><div style="font-size:11px;color:var(--text-dim)">Company logo, names · From $5/pos</div></div>
+          </div>
+          <div class="acct-rep">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--green-dark);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">MT</div>
+            <div><div class="acct-rep-name">Marcus T.</div><div class="acct-rep-role">Need help? Your RSEA rep</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="annotations-drawer">
+  <details>
+    <summary>All annotations — Product Detail Page (5 notes)</summary>
+    <div class="ann-list">
+      <div class="ann-item"><strong>APL confirmation</strong>Green badge = in shared catalogue. Amber = not in APL with request CTA.<br><span class="magento">Magento: SharedCatalog</span></div>
+      <div class="ann-item"><strong>Compliance tab — Differentiator</strong>Product-level SDS, certs, docs. Linked to Compliance Hub. Expiry tracking custom.<br><span class="magento">Custom: product_compliance_docs</span></div>
+      <div class="ann-item"><strong>Live tier pricing</strong>Price updates as qty changes. Tier badge shows active tier.<br><span class="magento">Magento: tier_pricing → JS</span></div>
+      <div class="ann-item"><strong>3-button CTA</strong>Yellow = Cart, Dark = Embroidery, Ghost = Save. Consistent across PDPs.<br><span class="magento">UX Pattern</span></div>
+      <div class="ann-item"><strong>Stock by store</strong>Store-level inventory sync with WMS. Medium-High complexity.<br><span class="magento">Custom: store_inventory_sync</span></div>
+    </div>
+  </details>
+</div>
+
+<div class="next-screen"><a href="03-plp.html" class="btn btn-outline">← Catalogue</a><a href="05-checkout.html" class="btn btn-primary">Checkout →</a></div>
+
+<script src="shared.js"></script>
+</body>
+</html>
