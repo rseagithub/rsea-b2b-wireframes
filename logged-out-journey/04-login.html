@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA Safety — Log In</title>
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+/* Logged-out page styles */
+.lo-header{background:var(--navy);padding:0 40px;height:64px;display:flex;align-items:center;position:sticky;top:0;z-index:100}
+.lo-header-inner{display:flex;align-items:center;width:100%;max-width:1280px;margin:0 auto;gap:24px}
+.lo-logo{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.lo-b2b-tag{background:rgba(255,255,255,.1);color:var(--text-mid);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:1px}
+.lo-nav{display:flex;gap:4px;margin-left:32px}
+.lo-nav a{color:var(--text-mid);font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;text-decoration:none;transition:all .15s}
+.lo-nav a:hover{color:var(--white);background:rgba(255,255,255,.06);text-decoration:none}
+.lo-header-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.lo-login-btn{border-color:rgba(255,255,255,.2)!important;color:var(--white)!important}
+.lo-login-btn:hover{border-color:rgba(255,255,255,.4)!important}
+
+.lo-footer{background:var(--navy);border-top:1px solid #222;padding:40px;margin-top:60px}
+.lo-footer-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+.lo-footer-col h4{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-mid);margin-bottom:12px;font-weight:600}
+.lo-footer-col a{display:block;font-size:13px;color:var(--text-dim);text-decoration:none;padding:3px 0;transition:color .15s}
+.lo-footer-col a:hover{color:var(--white)}
+.lo-footer-bottom{max-width:1280px;margin:24px auto 0;padding-top:20px;border-top:1px solid #222;display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim)}
+
+.lo-container{max-width:1280px;margin:0 auto;padding:0 40px}
+.lo-section{padding:40px 0}
+
+/* Hero */
+.lo-hero{background:linear-gradient(135deg,#1A2E1A 0%,#111 60%);border-bottom:3px solid var(--hivis);padding:60px 40px}
+.lo-hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.lo-hero h1{font-size:36px;font-weight:800;color:var(--white);line-height:1.2}
+.lo-hero h1 span{color:var(--hivis)}
+.lo-hero p{font-size:16px;color:var(--text-mid);margin-top:12px;line-height:1.6}
+.lo-hero-actions{display:flex;gap:12px;margin-top:24px}
+.lo-hero-img{background:#2A2A2A;border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:48px}
+
+/* Category cards */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:24px;text-align:center;text-decoration:none;color:var(--text);transition:all .2s;cursor:pointer}
+.cat-card:hover{border-color:var(--hivis);transform:translateY(-2px);text-decoration:none}
+.cat-card .cat-icon{font-size:36px;margin-bottom:12px}
+.cat-card h3{font-size:14px;font-weight:600;color:var(--white)}
+.cat-card p{font-size:11px;color:var(--text-dim);margin-top:4px}
+
+/* Value props */
+.vp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vp-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:24px}
+.vp-card .vp-icon{font-size:28px;margin-bottom:10px}
+.vp-card h3{font-size:15px;font-weight:600;color:var(--white);margin-bottom:6px}
+.vp-card p{font-size:13px;color:var(--text-mid);line-height:1.5}
+
+/* CTA banner */
+.cta-banner{background:linear-gradient(135deg,rgba(212,230,0,.1),rgba(212,230,0,.03));border:1px solid rgba(212,230,0,.2);border-radius:12px;padding:40px;text-align:center}
+.cta-banner h2{font-size:24px;font-weight:700;color:var(--white)}
+.cta-banner p{font-size:14px;color:var(--text-mid);margin-top:8px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-banner .cta-actions{display:flex;gap:12px;justify-content:center;margin-top:20px}
+
+/* Product cards (public - no add to cart) */
+.pub-product{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px;transition:all .15s;cursor:pointer;text-decoration:none;color:var(--text);display:block}
+.pub-product:hover{border-color:var(--hivis);text-decoration:none}
+.pub-product-img{width:100%;aspect-ratio:1;background:#2A2A2A;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px;margin-bottom:10px}
+
+/* Breadcrumb */
+.lo-breadcrumb{font-size:12px;color:var(--text-dim);padding:16px 0}
+.lo-breadcrumb a{color:var(--text-dim);text-decoration:none}.lo-breadcrumb a:hover{color:var(--text)}
+
+/* Forms */
+.lo-form-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:32px;max-width:480px;margin:0 auto}
+.lo-form-card h2{font-size:20px;font-weight:700;color:var(--white);margin-bottom:4px}
+.lo-form-card .subtitle{font-size:13px;color:var(--text-mid);margin-bottom:24px}
+.form-row{margin-bottom:16px}
+.form-row label{display:block;font-size:12px;font-weight:600;color:var(--white);margin-bottom:4px}
+.form-row input,.form-row select,.form-row textarea{width:100%;background:#2A2A2A;border:1px solid var(--card-border);color:var(--text);padding:10px 14px;border-radius:6px;font-size:13px;font-family:inherit}
+.form-row textarea{min-height:100px;resize:vertical}
+.form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--hivis)}
+.form-divider{text-align:center;padding:16px 0;color:var(--text-dim);font-size:12px;position:relative}
+.form-divider::before,.form-divider::after{content:"";position:absolute;top:50%;width:40%;height:1px;background:var(--card-border)}
+.form-divider::before{left:0}.form-divider::after{right:0}
+
+/* Filter sidebar for PLP */
+.lo-plp-layout{display:flex;gap:24px}
+.lo-plp-sidebar{min-width:220px}
+.lo-plp-main{flex:1}
+.lo-plp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.lo-price{font-size:16px;font-weight:700;color:var(--white)}
+.lo-rrp-label{font-size:10px;color:var(--text-dim);font-weight:400}
+.lo-login-prompt{background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--blue);margin-top:8px}
+
+/* PDP layout */
+.lo-pdp-layout{display:grid;grid-template-columns:1fr 420px;gap:32px}
+.lo-pdp-gallery{background:#2A2A2A;border-radius:10px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px}
+.lo-pdp-panel{display:flex;flex-direction:column;gap:16px}
+</style>
+<style>
+.tab-bar{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid var(--card-border)}
+.tab-bar button{flex:1;padding:12px;font-size:14px;font-weight:600;border:none;background:transparent;color:var(--text-dim);cursor:pointer;position:relative;transition:color .15s}
+.tab-bar button.active{color:var(--white)}
+.tab-bar button.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--hivis)}
+.tab-content{display:none}.tab-content.active{display:block}
+</style>
+</head><body>
+<header class="lo-header">
+  <div class="lo-header-inner">
+    <div class="lo-logo"><span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span><span class="lo-b2b-tag">B2B</span></div>
+    <nav class="lo-nav">
+      <a href="01-homepage.html">Home</a>
+      <a href="02-plp.html">Catalogue</a>
+      <a href="#">Industries</a>
+      <a href="#">Services</a>
+      <a href="05-contact.html">Contact</a>
+    </nav>
+    <div class="lo-header-right">
+      <a href="04-login.html" class="btn btn-outline lo-login-btn">Log in</a>
+      <a href="04-login.html#register" class="btn btn-primary">Register</a>
+    </div>
+  </div>
+</header>
+
+<div class="lo-container">
+  <div style="padding:60px 0">
+    <div class="lo-form-card" style="max-width:520px">
+      <div class="tab-bar">
+        <button class="active" onclick="showTab('login')">Log in</button>
+        <button onclick="showTab('register')" id="regTab">Register</button>
+      </div>
+
+      <!-- Login Tab -->
+      <div class="tab-content active" id="tab-login">
+        <h2>Welcome back</h2>
+        <div class="subtitle">Log in to access your B2B portal, contract pricing, and order management.</div>
+        <div class="form-row"><label>Email address</label><input type="text" placeholder="you@company.com.au"></div>
+        <div class="form-row"><label>Password</label><input type="password" placeholder="Enter your password"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-mid);cursor:pointer"><input type="checkbox" style="accent-color:var(--hivis)"> Remember me</label>
+          <a href="#" style="font-size:12px;color:var(--blue)" onclick="alert('Password reset email sent (wireframe placeholder)')">Forgot password?</a>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:14px">Log in</button>
+        <div class="form-divider">or</div>
+        <button class="btn btn-outline" style="width:100%;justify-content:center;padding:12px">Log in with SSO</button>
+        <div style="text-align:center;margin-top:16px;font-size:13px;color:var(--text-mid)">Don't have an account? <a href="#" style="color:var(--blue)" onclick="showTab('register')">Register your company</a></div>
+      </div>
+
+      <!-- Register Tab -->
+      <div class="tab-content" id="tab-register">
+        <h2>Register your company</h2>
+        <div class="subtitle">Set up a B2B account to access contract pricing, compliance tools, and the full portal experience.</div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:12px;font-weight:600">Company Details</div>
+        <div class="form-row"><label>Company name</label><input type="text" placeholder="e.g. Dawson Electrical Pty Ltd"></div>
+        <div class="form-row"><label>ABN</label><input type="text" placeholder="XX XXX XXX XXX"></div>
+        <div class="form-row"><label>Industry</label><select><option value="">Select industry</option><option>Electrical</option><option>Construction</option><option>Mining</option><option>Manufacturing</option><option>Transport & Logistics</option><option>Government</option><option>Healthcare</option><option>Agriculture</option><option>Other</option></select></div>
+        <div class="form-row"><label>Estimated monthly spend</label><select><option value="">Select range</option><option>Under $1,000</option><option>$1,000 – $5,000</option><option>$5,000 – $20,000</option><option>$20,000+</option></select></div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:20px 0 12px;font-weight:600">Your Details</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px"><div class="form-row"><label>First name</label><input type="text"></div><div class="form-row"><label>Last name</label><input type="text"></div></div>
+        <div class="form-row"><label>Email address</label><input type="text" placeholder="you@company.com.au"></div>
+        <div class="form-row"><label>Phone</label><input type="text" placeholder="04XX XXX XXX"></div>
+        <div class="form-row"><label>Password</label><input type="password" placeholder="Create a password"></div>
+        <div style="margin-bottom:20px"><label style="display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--text-mid);cursor:pointer"><input type="checkbox" style="accent-color:var(--hivis);margin-top:2px"> I agree to the Terms & Conditions and Privacy Policy</label></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:14px">Submit registration</button>
+        <div style="background:var(--blue-bg);border:1px solid rgba(96,165,250,.2);border-radius:8px;padding:12px;font-size:12px;color:var(--blue);margin-top:16px;text-align:center">Your registration will be reviewed by the RSEA B2B team. You'll receive an email within 1-2 business days with your account details and assigned account manager.</div>
+        <div style="text-align:center;margin-top:16px;font-size:13px;color:var(--text-mid)">Already have an account? <a href="#" style="color:var(--blue)" onclick="showTab('login')">Log in</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="lo-footer">
+  <div class="lo-footer-inner">
+    <div class="lo-footer-col">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span class="logo-pill">R//</span><span style="font-weight:700;font-size:15px;color:var(--white)">RSEA Safety</span></div>
+      <p style="font-size:12px;color:var(--text-dim);line-height:1.5">Australia's leading workwear and PPE retailer. Supplying businesses of all sizes with quality safety products, uniforms, and custom embroidery services.</p>
+    </div>
+    <div class="lo-footer-col">
+      <h4>Products</h4>
+      <a href="02-plp.html">Safety Footwear</a>
+      <a href="02-plp.html">Hi-Vis Workwear</a>
+      <a href="02-plp.html">Gloves & Hand Protection</a>
+      <a href="02-plp.html">Head & Eye Protection</a>
+      <a href="02-plp.html">Respiratory Protection</a>
+    </div>
+    <div class="lo-footer-col">
+      <h4>B2B Services</h4>
+      <a href="04-login.html#register">Company Registration</a>
+      <a href="#">Contract Pricing</a>
+      <a href="#">Uniform & Embroidery</a>
+      <a href="#">Compliance Documents</a>
+      <a href="#">Bulk Ordering</a>
+    </div>
+    <div class="lo-footer-col">
+      <h4>Support</h4>
+      <a href="05-contact.html">Contact Us</a>
+      <a href="#">Find a Store</a>
+      <a href="#">Delivery Information</a>
+      <a href="#">Returns Policy</a>
+      <a href="#">FAQs</a>
+    </div>
+  </div>
+  <div class="lo-footer-bottom">
+    <span>© 2024 RSEA Safety. All rights reserved. ABN 12 345 678 901</span>
+    <span>Privacy Policy · Terms & Conditions</span>
+  </div>
+</footer>
+<script src="../assets/shared.js"></script>
+<script>
+function showTab(t){
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab-bar button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  document.querySelectorAll('.tab-bar button')[t==='login'?0:1].classList.add('active');
+}
+if(window.location.hash==='#register')showTab('register');
+</script>
+</body></html>
