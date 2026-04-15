@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Uniforms & Embroidery</title>
+<link rel="stylesheet" href="../assets/shared.css">
+<style>.step-content{display:none}.step-content.active{display:block}</style>
+</head>
+<body>
+<div class="wf-bar">
+  <div class="wf-bar-left"><h1>Sarah — Uniform & embroidery order flow (5 steps)</h1><p>Mid-fidelity wireframe · Largest custom build · No Magento native equivalent</p></div>
+  <div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div>
+</div>
+<div class="topbar">
+  <span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span>
+  <a href="#" class="topbar-btn accent">My account</a>
+  <a href="03-plp.html" class="topbar-btn">Browse all products</a>
+  <span class="topbar-spacer"></span>
+  <span class="topbar-account">Dawson Electrical — Account #40291</span>
+  <div class="avatar">SL</div>
+</div>
+<nav class="subnav">
+  <a href="01-dashboard.html">Dashboard</a>
+  <a href="09-order-history.html">Orders</a>
+  <a href="02-uniform-embroidery.html" class="active">Uniforms</a>
+  <a href="#">Budgets</a>
+  <a href="#">Approvals <span class="badge">3</span></a>
+  <a href="#">Compliance docs</a>
+  <a href="#">Reports</a>
+  <a href="08-team-members.html">Users</a>
+</nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div>
+      <a href="01-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a>
+      <a href="03-plp.html" class="sb-link"><span class="sb-dot blue"></span> Place an order</a>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Saved lists</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Manage</div>
+      <a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals <span class="sb-badge">3</span></a>
+      <a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a>
+      <a href="02-uniform-embroidery.html" class="sb-link active"><span class="sb-dot green"></span> Uniforms & logos</a>
+      <a href="08-team-members.html" class="sb-link"><span class="sb-dot blue"></span> Team members</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Reports</div>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Spend by site</a>
+      <a href="09-order-history.html" class="sb-link"><span class="sb-dot blue"></span> Order history</a>
+      <a href="#" class="sb-link"><span class="sb-dot green"></span> Compliance docs</a>
+    </div>
+    <div class="acct-rep" style="margin-top:20px">
+      <div class="acct-rep-head">Your account rep</div>
+      <div class="acct-rep-name">Marcus T.</div>
+      <div class="acct-rep-role">RSEA Account Manager</div>
+    </div>
+  </aside>
+  <main class="main">
+
+    <div class="breadcrumb"><a href="01-dashboard.html">Dashboard</a> / Uniform & Embroidery Order</div>
+    <div class="page-header flex-between"><h1>Uniform & Embroidery Order</h1>
+      <span class="note">Biggest custom build<span class="note-popup"><strong>Build note</strong>Entire 5-step flow is custom. No Magento native equivalent. Largest single module.<span class="magento">Custom: uniform_embroidery module</span></span></span>
+    </div>
+
+    <div class="steps" id="stepIndicator">
+      <div class="step active" data-step="1"><div class="step-num">1</div> Select employees</div><div class="step-line"></div>
+      <div class="step" data-step="2"><div class="step-num">2</div> Select garments</div><div class="step-line"></div>
+      <div class="step" data-step="3"><div class="step-num">3</div> Decoration setup</div><div class="step-line"></div>
+      <div class="step" data-step="4"><div class="step-num">4</div> Proof approval</div><div class="step-line"></div>
+      <div class="step" data-step="5"><div class="step-num">5</div> Confirm & submit</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step-content active" data-step="1">
+      <div class="card">
+        <div class="card-header"><h3>Select employees</h3>
+          <div class="flex-gap"><input type="text" placeholder="Search employees..." style="width:180px"><select><option>All sites</option><option>Head Office</option><option>Ringwood</option><option>Dandenong</option></select></div>
+        </div>
+        <span class="note">Employee profiles<span class="note-popup"><strong>Logic note</strong>Employee list from uniform entitlement profiles. Stores name, site, role, size chart, entitlement balance.<span class="magento">Custom: employee_entitlement_profiles</span></span></span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px">
+          <div style="background:var(--card-bg);border:2px solid var(--hivis);border-radius:8px;padding:12px"><div style="font-size:13px;font-weight:600;color:var(--white)">Mike Davidson</div><div style="font-size:11px;color:var(--text-dim)">Head Office · Electrician</div><div style="font-size:11px;color:var(--text-dim)">Top: L · Boot: 10 · 3 items remaining</div></div>
+          <div style="background:var(--card-bg);border:2px solid var(--hivis);border-radius:8px;padding:12px"><div style="font-size:13px;font-weight:600;color:var(--white)">Chris Palmer</div><div style="font-size:11px;color:var(--text-dim)">Ringwood · Apprentice</div><div style="font-size:11px;color:var(--text-dim)">Top: M · Boot: 9 · 5 items remaining</div></div>
+          <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:12px"><div style="font-size:13px;font-weight:600;color:var(--white)">Jake Thompson</div><div style="font-size:11px;color:var(--text-dim)">Head Office · Electrician</div><div style="font-size:11px;color:var(--text-dim)">Top: XL · Boot: 11 · 2 items remaining</div></div>
+          <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:12px"><div style="font-size:13px;font-weight:600;color:var(--white)">Tina Nguyen</div><div style="font-size:11px;color:var(--text-dim)">Dandenong · Office Admin</div><div style="font-size:11px;color:var(--text-dim)">Top: S · Boot: 7 · 4 items remaining</div></div>
+          <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:12px"><div style="font-size:13px;font-weight:600;color:var(--white)">Rob Martin</div><div style="font-size:11px;color:var(--text-dim)">Ringwood · Foreman</div><div style="font-size:11px;color:var(--text-dim)">Top: XXL · Boot: 12 · 1 item remaining</div></div>
+          <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:12px"><div style="font-size:13px;font-weight:600;color:var(--white)">Lisa Park</div><div style="font-size:11px;color:var(--text-dim)">Dandenong · Electrician</div><div style="font-size:11px;color:var(--text-dim)">Top: M · Boot: 8 · 5 items remaining</div></div>
+        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--text-mid)">2 employees selected</span><button class="btn btn-primary" onclick="goToStep(2)">Next: Select garments →</button></div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-content" data-step="2">
+      <div class="card">
+        <div class="card-header"><h3>Select garments</h3><span class="apl">APL items only</span></div>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="background:var(--card-bg);border:2px solid var(--hivis);border-radius:8px;padding:14px;display:flex;gap:14px"><div style="width:72px;height:72px;background:#2A2A2A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim);flex-shrink:0">👕</div><div style="flex:1"><div style="font-weight:600;color:var(--white)">KingGee Workcool 2 Hi-Vis Shirt</div><div style="font-size:11px;color:var(--text-dim)">SKU: KG-WC2-HV · Yellow/Navy</div><div style="margin-top:4px"><strong style="color:var(--white)">$48.50</strong> <span style="text-decoration:line-through;color:var(--text-dim);font-size:12px">RRP $62.00</span></div><div style="margin-top:4px"><span class="apl">APL</span> <span style="font-size:11px;color:var(--text-mid);margin-left:6px">🧵 Embroidery compatible</span></div></div></div>
+          <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px;display:flex;gap:14px"><div style="width:72px;height:72px;background:#2A2A2A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim);flex-shrink:0">👖</div><div style="flex:1"><div style="font-weight:600;color:var(--white)">KingGee Workcool Pro Pant</div><div style="font-size:11px;color:var(--text-dim)">SKU: KG-WCP-NV · Navy</div><div style="margin-top:4px"><strong style="color:var(--white)">$52.00</strong> <span style="text-decoration:line-through;color:var(--text-dim);font-size:12px">RRP $68.00</span></div><div style="margin-top:4px"><span class="apl">APL</span></div></div></div>
+          <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px;display:flex;gap:14px"><div style="width:72px;height:72px;background:#2A2A2A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim);flex-shrink:0">🥾</div><div style="flex:1"><div style="font-weight:600;color:var(--white)">Steel Blue Argyle Zip Safety Boot</div><div style="font-size:11px;color:var(--text-dim)">SKU: SB-AZ-WHT · Wheat</div><div style="margin-top:4px"><strong style="color:var(--white)">$189.00</strong> <span style="text-decoration:line-through;color:var(--text-dim);font-size:12px">RRP $219.00</span></div><div style="margin-top:4px"><span class="apl">APL</span></div></div></div>
+        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="goToStep(1)">← Back</button><button class="btn btn-primary" onclick="goToStep(3)">Next: Decoration setup →</button></div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-content" data-step="3">
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Decoration type</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="background:rgba(212,230,0,.06);border:2px solid var(--hivis);border-radius:8px;padding:14px"><div style="font-weight:600;color:var(--white)">🧵 Embroidery</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">Thread-based · Premium · +$8.50/position</div></div>
+            <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px"><div style="font-weight:600;color:var(--white)">🔥 Heat Press</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">Vinyl transfer · Cost-effective · +$5.00/position</div></div>
+          </div>
+          <h3 style="margin:18px 0 10px;color:var(--white)">Logo library</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div style="background:#2A2A2A;border:2px solid var(--hivis);border-radius:6px;padding:12px;text-align:center"><div style="font-size:22px">🏢</div><div style="font-size:11px;font-weight:600;color:var(--white);margin-top:4px">Dawson Logo</div><span class="pill pill-green" style="font-size:9px">Approved</span></div>
+            <div style="background:#2A2A2A;border:1px solid var(--card-border);border-radius:6px;padding:12px;text-align:center"><div style="font-size:22px">⚡</div><div style="font-size:11px;font-weight:600;color:var(--white);margin-top:4px">Dawson Icon</div><span class="pill pill-green" style="font-size:9px">Approved</span></div>
+            <div style="background:#2A2A2A;border:1px solid var(--card-border);border-radius:6px;padding:12px;text-align:center;opacity:.5"><div style="font-size:22px">🆕</div><div style="font-size:11px;font-weight:600;color:var(--white);margin-top:4px">New Logo v2</div><span class="pill pill-amber" style="font-size:9px">Pending</span></div>
+          </div>
+          <h3 style="margin:18px 0 8px;color:var(--white)">Thread colour</h3>
+          <div style="display:flex;gap:8px">
+            <div style="width:28px;height:28px;border-radius:50%;background:#FFF;border:2px solid #444;cursor:pointer"></div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#1A1A1A;border:2px solid var(--hivis);cursor:pointer;box-shadow:0 0 0 2px var(--hivis)"></div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#1E3A5F;border:2px solid #444;cursor:pointer"></div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#DC2626;border:2px solid #444;cursor:pointer"></div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#D4E600;border:2px solid #444;cursor:pointer"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Placement diagram</h3>
+          <div style="background:#2A2A2A;border:1px solid var(--card-border);border-radius:8px;padding:24px;text-align:center;position:relative;min-height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <div style="font-size:56px;opacity:.3">👕</div>
+            <div style="font-size:11px;color:var(--text-dim)">KingGee Workcool 2</div>
+            <div style="position:absolute;top:60px;left:36%;width:24px;height:24px;border-radius:50%;background:var(--hivis);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--navy)">1</div>
+            <div style="position:absolute;top:60px;right:36%;width:24px;height:24px;border-radius:50%;background:var(--hivis);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--navy)">2</div>
+          </div>
+          <div style="margin-top:14px;font-size:13px">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--white)"><strong>1. Left Chest:</strong> Dawson Logo</span><span style="color:var(--text-mid)">+$8.50</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><span style="color:var(--white)"><strong>2. Right Chest:</strong> Employee Name</span><span style="color:var(--text-mid)">+$8.50</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="goToStep(2)">← Back</button><button class="btn btn-primary" onclick="goToStep(4)">Next: Review proofs →</button></div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-content" data-step="4">
+      <div class="card">
+        <div class="card-header"><h3>Digital proof approval</h3><span class="pill pill-amber">2 proofs to approve</span></div>
+        <div class="grid-2" style="margin-top:14px">
+          <div>
+            <div style="font-weight:600;color:var(--white);margin-bottom:8px">Mike Davidson — KingGee Workcool 2</div>
+            <div style="background:rgba(74,222,128,.06);border:2px solid var(--green);border-radius:8px;padding:28px;text-align:center"><div style="font-size:40px">👕</div><div style="font-size:13px;font-weight:600;color:var(--green)">✓ Proof approved</div></div>
+          </div>
+          <div>
+            <div style="font-weight:600;color:var(--white);margin-bottom:8px">Chris Palmer — KingGee Workcool 2</div>
+            <div style="background:#2A2A2A;border:2px dashed var(--card-border);border-radius:8px;padding:28px;text-align:center"><div style="font-size:40px">👕</div><div style="font-size:13px;color:var(--text-dim)">Awaiting approval</div></div>
+            <div style="margin-top:8px;display:flex;gap:6px"><button class="btn btn-primary btn-sm">✓ Approve</button><button class="btn btn-outline btn-sm">Request revision</button></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="goToStep(3)">← Back</button><button class="btn btn-primary" onclick="goToStep(5)">Next: Confirm →</button></div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-content" data-step="5">
+      <div class="grid-sidebar">
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Order summary</h3>
+          <table class="data-table"><thead><tr><th>Employee</th><th>Item</th><th>Decoration</th><th>Site</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--white)">Mike Davidson</strong></td><td>KingGee Workcool 2 (L)</td><td>Embroidery ×2</td><td>Head Office</td><td style="color:var(--white)"><strong>$65.50</strong></td></tr>
+            <tr><td><strong style="color:var(--white)">Chris Palmer</strong></td><td>KingGee Workcool 2 (M)</td><td>Embroidery ×2</td><td>Ringwood</td><td style="color:var(--white)"><strong>$65.50</strong></td></tr>
+          </tbody></table>
+        </div>
+        <div>
+          <div class="card">
+            <h3 style="margin-bottom:12px;color:var(--white)">Order total</h3>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0"><span>Garments (2)</span><span style="color:var(--white)">$97.00</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0"><span>Embroidery (4 pos.)</span><span style="color:var(--white)">$34.00</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700;padding:8px 0;border-top:1px solid var(--card-border);margin-top:8px;color:var(--white)"><span>Total (incl. GST)</span><span>$144.10</span></div>
+          </div>
+          <div class="approval-panel" style="margin-bottom:12px">✓ <div><strong style="display:block">Within approval limit</strong><span style="font-size:12px">Under $2,000 threshold.</span></div></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px" onclick="navigateTo('06-order-confirmation.html')">Submit uniform order</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:8px">Save as draft</button>
+        </div>
+      </div>
+      <div style="margin-top:16px"><button class="btn btn-outline" onclick="goToStep(4)">← Back</button></div>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:16px">
+      <a href="01-dashboard.html" class="btn btn-outline">← Dashboard</a>
+      <a href="03-plp.html" class="btn btn-primary">Browse catalogue →</a>
+    </div>
+
+  </main>
+</div>
+<script src="../assets/shared.js"></script>
+<script>
+function goToStep(n){
+  document.querySelectorAll('.step-content').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.step-content[data-step="'+n+'"]').classList.add('active');
+  document.querySelectorAll('.step').forEach(s=>{const sn=parseInt(s.dataset.step);s.classList.remove('active','done');if(sn===n)s.classList.add('active');else if(sn<n)s.classList.add('done');});
+  document.querySelectorAll('.step-line').forEach((c,i)=>{c.classList.toggle('done',i<n-1)});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Checkout</title>
+<link rel="stylesheet" href="../assets/shared.css">
+
+</head>
+<body>
+<div class="wf-bar">
+  <div class="wf-bar-left"><h1>Sarah — Checkout · Multi-address, budget warning, approval routing</h1><p>Mid-fidelity wireframe · 3-step rail · PO capture · Invoice on account</p></div>
+  <div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div>
+</div>
+<div class="topbar">
+  <span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span>
+  <a href="#" class="topbar-btn accent">My account</a>
+  <a href="03-plp.html" class="topbar-btn">Browse all products</a>
+  <span class="topbar-spacer"></span>
+  <span class="topbar-account">Dawson Electrical — Account #40291</span>
+  <div class="avatar">SL</div>
+</div>
+<nav class="subnav">
+  <a href="01-dashboard.html" class="active">Dashboard</a>
+  <a href="09-order-history.html">Orders</a>
+  <a href="02-uniform-embroidery.html">Uniforms</a>
+  <a href="#">Budgets</a>
+  <a href="#">Approvals <span class="badge">3</span></a>
+  <a href="#">Compliance docs</a>
+  <a href="#">Reports</a>
+  <a href="08-team-members.html">Users</a>
+</nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div>
+      <a href="01-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a>
+      <a href="03-plp.html" class="sb-link"><span class="sb-dot blue"></span> Place an order</a>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Saved lists</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Manage</div>
+      <a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals <span class="sb-badge">3</span></a>
+      <a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a>
+      <a href="02-uniform-embroidery.html" class="sb-link"><span class="sb-dot green"></span> Uniforms & logos</a>
+      <a href="08-team-members.html" class="sb-link"><span class="sb-dot blue"></span> Team members</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Reports</div>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Spend by site</a>
+      <a href="09-order-history.html" class="sb-link"><span class="sb-dot blue"></span> Order history</a>
+      <a href="#" class="sb-link"><span class="sb-dot green"></span> Compliance docs</a>
+    </div>
+    <div class="acct-rep" style="margin-top:20px">
+      <div class="acct-rep-head">Your account rep</div>
+      <div class="acct-rep-name">Marcus T.</div>
+      <div class="acct-rep-role">RSEA Account Manager</div>
+    </div>
+  </aside>
+  <main class="main">
+
+    <div class="breadcrumb"><a href="01-dashboard.html">Dashboard</a> / Checkout</div>
+    <h1 style="color:var(--white);margin-bottom:16px">Checkout</h1>
+    <div style="display:flex;gap:0;margin-bottom:24px">
+      <div style="flex:1;padding:10px 16px;font-size:13px;font-weight:600;text-align:center;border-bottom:3px solid var(--green);color:var(--green)">1. Review order</div>
+      <div style="flex:1;padding:10px 16px;font-size:13px;font-weight:600;text-align:center;border-bottom:3px solid var(--hivis);color:var(--white)">2. Delivery & payment</div>
+      <div style="flex:1;padding:10px 16px;font-size:13px;font-weight:600;text-align:center;border-bottom:3px solid var(--card-border);color:var(--text-dim)">3. Confirm</div>
+    </div>
+    <div class="grid-sidebar">
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>Order lines (3 items)</h3><span class="note">Editable lines<span class="note-popup"><strong>Logic note</strong>Qty, size, address editable per line. Price updates live with tier pricing.<span class="magento">Magento: checkout → quote_item</span></span></span></div>
+          <div style="background:#2A2A2A;border-radius:8px;padding:14px;margin-bottom:10px;display:flex;gap:14px">
+            <div style="width:56px;height:56px;background:var(--card-bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim);flex-shrink:0;border:1px solid var(--card-border)">🥾</div>
+            <div style="flex:1"><div style="font-weight:600;color:var(--white)">Steel Blue Argyle Zip × 6</div><div style="font-size:11px;color:var(--text-dim)">Size: 10 · Wheat</div><div style="font-size:13px;margin-top:4px;color:var(--white)"><strong>$179.00</strong>/ea × 6 = <strong>$1,074.00</strong></div>
+              <div style="background:var(--blue-bg);border:1px solid rgba(96,165,250,.2);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:11px;color:var(--blue)">📍 <strong>Head Office</strong> — 14 Smith St, Dandenong</div>
+            </div>
+            <div><button class="btn btn-outline btn-sm">Edit</button></div>
+          </div>
+          <div style="background:#2A2A2A;border-radius:8px;padding:14px;margin-bottom:10px;display:flex;gap:14px">
+            <div style="width:56px;height:56px;background:var(--card-bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim);flex-shrink:0;border:1px solid var(--card-border)">👕</div>
+            <div style="flex:1"><div style="font-weight:600;color:var(--white)">KingGee Workcool 2 × 2</div><div style="font-size:11px;color:var(--text-dim)">L, M · With embroidery</div><div style="font-size:13px;margin-top:4px;color:var(--white)"><strong>$65.50</strong>/ea × 2 = <strong>$131.00</strong></div>
+              <div style="background:var(--blue-bg);border:1px solid rgba(96,165,250,.2);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:11px;color:var(--blue)">📍 Split: → <strong>Head Office</strong> (Mike) → <strong>Ringwood</strong> (Chris)</div>
+              <span class="note" style="margin-top:6px">Multi-address<span class="note-popup"><strong>Logic note</strong>Per-line address split. Separate shipments. Decoration items flagged with longer lead.<span class="magento">Magento: Multishipping</span></span></span>
+            </div>
+          </div>
+          <div style="background:#2A2A2A;border-radius:8px;padding:14px;display:flex;gap:14px">
+            <div style="width:56px;height:56px;background:var(--card-bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim);flex-shrink:0;border:1px solid var(--card-border)">🧤</div>
+            <div style="flex:1"><div style="font-weight:600;color:var(--white)">Ansell HyFlex Gloves × 12</div><div style="font-size:11px;color:var(--text-dim)">Size: 9</div><div style="font-size:13px;margin-top:4px;color:var(--white)"><strong>$18.50</strong>/box × 12 = <strong>$222.00</strong></div>
+              <div style="background:var(--blue-bg);border:1px solid rgba(96,165,250,.2);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:11px;color:var(--blue)">📍 <strong>Dandenong Site</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Purchase order & cost centre</h3>
+          <span class="note">PO mandatory?<span class="note-popup"><strong>Open question — Workshop</strong>Is PO mandatory for all orders or only above threshold? Workshop decision needed.<span class="magento">Config: po_number_rules</span></span></span>
+          <div class="grid-2" style="margin-top:10px">
+            <div><label style="font-size:12px;font-weight:600;color:var(--white);display:block;margin-bottom:4px">PO Number <span style="color:var(--red)">*</span></label><input type="text" value="PO-DE-2024-090" style="width:100%"></div>
+            <div><label style="font-size:12px;font-weight:600;color:var(--white);display:block;margin-bottom:4px">Cost Centre</label><select style="width:100%"><option>PPE — Safety</option><option>Uniforms</option></select></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Payment method</h3>
+          <div style="background:#2A2A2A;border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px"><input type="radio" checked style="accent-color:var(--hivis)"><div><strong style="color:var(--white);font-size:13px">Invoice on account — 30 day terms</strong><div style="font-size:11px;color:var(--text-dim)">Dawson Electrical Pty Ltd · ABN 42 123 456 789</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="position:sticky;top:100px">
+          <h3 style="margin-bottom:14px;color:var(--white)">Order summary</h3>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>Steel Blue × 6</span><span style="color:var(--white)">$1,074.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>KingGee × 2 + embroidery</span><span style="color:var(--white)">$131.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>Ansell × 12</span><span style="color:var(--white)">$222.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px;border-top:1px solid var(--card-border);margin-top:8px;padding-top:8px"><span>Subtotal</span><span style="color:var(--white)">$1,427.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>GST</span><span style="color:var(--white)">$142.70</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:16px;font-weight:700;border-top:2px solid var(--white);margin-top:8px;color:var(--white)"><span>Total</span><span>$1,569.70</span></div>
+          <div class="warning-panel" style="margin-top:14px">⚠️ <div><strong style="display:block">Budget warning — Ringwood</strong><span style="font-size:11px">Will push to 92% ($5,600 / $6,000).</span></div></div>
+          <div class="approval-panel" style="margin-top:10px">✓ <div><strong style="display:block">Within approval limit</strong><span style="font-size:11px">$1,569.70 under $2,000 threshold.</span></div></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:14px;margin-top:14px" onclick="navigateTo('06-order-confirmation.html')">Place order — $1,569.70</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:8px">Save as draft</button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:16px"><a href="04-pdp.html" class="btn btn-outline">← Product</a><a href="06-order-confirmation.html" class="btn btn-primary">Confirmation →</a></div>
+
+  </main>
+</div>
+<script src="../assets/shared.js"></script>
+
+</body>
+</html>

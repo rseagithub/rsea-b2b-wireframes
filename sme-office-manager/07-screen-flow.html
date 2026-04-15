@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Screen Flow Map</title>
+<link rel="stylesheet" href="../assets/shared.css">
+
+</head>
+<body>
+<div class="wf-bar">
+  <div class="wf-bar-left"><h1>B2B Portal — Screen flow map · All 12 screens</h1><p>Click any node for features, Magento config, complexity · Journey filters</p></div>
+  <div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div>
+</div>
+<div class="topbar">
+  <span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span>
+  <a href="#" class="topbar-btn accent">My account</a>
+  <a href="03-plp.html" class="topbar-btn">Browse all products</a>
+  <span class="topbar-spacer"></span>
+  <span class="topbar-account">Dawson Electrical — Account #40291</span>
+  <div class="avatar">SL</div>
+</div>
+<nav class="subnav">
+  <a href="01-dashboard.html" class="active">Dashboard</a>
+  <a href="09-order-history.html">Orders</a>
+  <a href="02-uniform-embroidery.html">Uniforms</a>
+  <a href="#">Budgets</a>
+  <a href="#">Approvals <span class="badge">3</span></a>
+  <a href="#">Compliance docs</a>
+  <a href="#">Reports</a>
+  <a href="08-team-members.html">Users</a>
+</nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div>
+      <a href="01-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a>
+      <a href="03-plp.html" class="sb-link"><span class="sb-dot blue"></span> Place an order</a>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Saved lists</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Manage</div>
+      <a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals <span class="sb-badge">3</span></a>
+      <a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a>
+      <a href="02-uniform-embroidery.html" class="sb-link"><span class="sb-dot green"></span> Uniforms & logos</a>
+      <a href="08-team-members.html" class="sb-link"><span class="sb-dot blue"></span> Team members</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Reports</div>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Spend by site</a>
+      <a href="09-order-history.html" class="sb-link"><span class="sb-dot blue"></span> Order history</a>
+      <a href="#" class="sb-link"><span class="sb-dot green"></span> Compliance docs</a>
+    </div>
+    <div class="acct-rep" style="margin-top:20px">
+      <div class="acct-rep-head">Your account rep</div>
+      <div class="acct-rep-name">Marcus T.</div>
+      <div class="acct-rep-role">RSEA Account Manager</div>
+    </div>
+  </aside>
+  <main class="main">
+
+    <div class="page-header"><h1>Screen Flow Map</h1><p>Click any screen to view features, Magento config, and build complexity</p></div>
+    <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--text-dim);padding:5px 0">Filter:</span>
+      <div style="padding:5px 12px;border:1px solid var(--white);border-radius:16px;font-size:11px;font-weight:500;background:var(--white);color:var(--navy)">All screens</div>
+      <div style="padding:5px 12px;border:1px solid var(--card-border);border-radius:16px;font-size:11px;font-weight:500;color:var(--text-mid)">Sarah (SME)</div>
+      <div style="padding:5px 12px;border:1px solid var(--card-border);border-radius:16px;font-size:11px;font-weight:500;color:var(--text-mid)">Craig (Enterprise)</div>
+      <div style="padding:5px 12px;border:1px solid var(--card-border);border-radius:16px;font-size:11px;font-weight:500;color:var(--text-mid)">Uniform flow</div>
+    </div>
+    <div style="display:flex;gap:16px;margin-bottom:14px;font-size:11px;color:var(--text-mid)">
+      <div style="display:flex;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:3px;border:2px solid var(--green);background:var(--green-bg)"></div> Wireframed</div>
+      <div style="display:flex;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:3px;border:2px dashed var(--amber);background:var(--amber-bg)"></div> Not yet</div>
+    </div>
+    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:32px;min-height:500px">
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:28px">
+        <div style="background:#2A2A2A;border:2px dashed var(--amber);border-radius:10px;padding:12px 16px;min-width:140px;text-align:center"><div style="font-size:18px;margin-bottom:4px">🔐</div><div style="font-size:12px;font-weight:600;color:var(--white)">Login / SSO</div><span class="pill pill-amber" style="font-size:9px;margin-top:4px">Not wireframed</span></div>
+        <div style="color:var(--text-dim);font-size:18px">→</div>
+        <a href="01-dashboard.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:140px;text-align:center;text-decoration:none;transition:all .15s" onmouseover="this.style.borderColor='var(--hivis)'" onmouseout="this.style.borderColor='var(--green)'"><div style="font-size:18px;margin-bottom:4px">📊</div><div style="font-size:12px;font-weight:600;color:var(--white)">Dashboard</div><span class="pill pill-green" style="font-size:9px;margin-top:4px">Wireframed</span></a>
+      </div>
+      <div style="text-align:center;margin:-12px 0 -4px;font-size:18px;color:var(--text-dim)">↓</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:28px">
+        <a href="03-plp.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:130px;text-align:center;text-decoration:none"><div style="font-size:18px;margin-bottom:4px">📦</div><div style="font-size:12px;font-weight:600;color:var(--white)">Product Listing</div><span class="pill pill-green" style="font-size:9px">Wireframed</span></a>
+        <div style="color:var(--text-dim)">→</div>
+        <a href="04-pdp.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:130px;text-align:center;text-decoration:none"><div style="font-size:18px;margin-bottom:4px">🔍</div><div style="font-size:12px;font-weight:600;color:var(--white)">Product Detail</div><span class="pill pill-green" style="font-size:9px">Wireframed</span></a>
+        <div style="color:var(--text-dim)">→</div>
+        <a href="05-checkout.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:130px;text-align:center;text-decoration:none"><div style="font-size:18px;margin-bottom:4px">🛒</div><div style="font-size:12px;font-weight:600;color:var(--white)">Checkout</div><span class="pill pill-green" style="font-size:9px">Wireframed</span></a>
+        <div style="color:var(--text-dim)">→</div>
+        <a href="06-order-confirmation.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:130px;text-align:center;text-decoration:none"><div style="font-size:18px;margin-bottom:4px">✅</div><div style="font-size:12px;font-weight:600;color:var(--white)">Confirmation</div><span class="pill pill-green" style="font-size:9px">Wireframed</span></a>
+      </div>
+      <div style="text-align:center;margin:-12px 0 -4px;font-size:18px;color:var(--text-dim)">↓</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:28px">
+        <a href="02-uniform-embroidery.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:130px;text-align:center;text-decoration:none"><div style="font-size:18px;margin-bottom:4px">👕</div><div style="font-size:12px;font-weight:600;color:var(--white)">Uniforms</div><span class="pill pill-green" style="font-size:9px">Wireframed</span></a>
+        <div style="background:#2A2A2A;border:2px dashed var(--amber);border-radius:10px;padding:12px 16px;min-width:130px;text-align:center"><div style="font-size:18px;margin-bottom:4px">💰</div><div style="font-size:12px;font-weight:600;color:var(--white)">Budgets</div><span class="pill pill-amber" style="font-size:9px">High priority</span></div>
+        <div style="background:#2A2A2A;border:2px dashed var(--amber);border-radius:10px;padding:12px 16px;min-width:130px;text-align:center"><div style="font-size:18px;margin-bottom:4px">✋</div><div style="font-size:12px;font-weight:600;color:var(--white)">Approvals</div><span class="pill pill-amber" style="font-size:9px">Not wireframed</span></div>
+      </div>
+      <div style="text-align:center;margin:-12px 0 -4px;font-size:18px;color:var(--text-dim)">↓</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px">
+        <a href="09-order-history.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:120px;text-align:center;text-decoration:none"><div style="font-size:18px;margin-bottom:4px">📋</div><div style="font-size:12px;font-weight:600;color:var(--white)">Orders</div><span class="pill pill-green" style="font-size:9px">Wireframed</span></a>
+        <div style="background:#2A2A2A;border:2px dashed var(--amber);border-radius:10px;padding:12px 16px;min-width:120px;text-align:center"><div style="font-size:18px;margin-bottom:4px">📑</div><div style="font-size:12px;font-weight:600;color:var(--white)">Compliance</div><span class="pill pill-amber" style="font-size:9px">Differentiator</span></div>
+        <div style="background:#2A2A2A;border:2px dashed var(--amber);border-radius:10px;padding:12px 16px;min-width:120px;text-align:center"><div style="font-size:18px;margin-bottom:4px">📈</div><div style="font-size:12px;font-weight:600;color:var(--white)">Reports</div><span class="pill pill-amber" style="font-size:9px">Not wireframed</span></div>
+        <a href="08-team-members.html" style="background:#2A2A2A;border:2px solid var(--green);border-radius:10px;padding:12px 16px;min-width:120px;text-align:center;text-decoration:none"><div style="font-size:18px;margin-bottom:4px">👥</div><div style="font-size:12px;font-weight:600;color:var(--white)">Users</div><span class="pill pill-green" style="font-size:9px">Wireframed</span></a>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:20px"><a href="01-dashboard.html" class="btn btn-outline">← Dashboard</a><a href="../index.html" class="btn btn-primary">All journeys →</a></div>
+
+  </main>
+</div>
+<script src="../assets/shared.js"></script>
+
+</body>
+</html>

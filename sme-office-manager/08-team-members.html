@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Team Members</title>
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.member-table{width:100%;border-collapse:collapse;font-size:13px}.member-table th{text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);border-bottom:1px solid var(--card-border);font-weight:600}.member-table td{padding:10px 12px;border-bottom:1px solid var(--card-border);color:var(--text)}.member-table tr:hover td{background:rgba(255,255,255,.02)}
+.role-pill{font-size:10px;font-weight:600;padding:3px 10px;border-radius:10px;display:inline-block}.role-admin{background:var(--purple-bg);color:var(--purple)}.role-buyer{background:var(--blue-bg);color:var(--blue)}.role-viewer{background:rgba(255,255,255,.08);color:var(--text-mid)}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}.status-dot.active{background:var(--green)}.status-dot.inactive{background:var(--red)}.status-dot.pending{background:var(--amber)}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:400;align-items:center;justify-content:center}.modal-overlay.show{display:flex}
+.modal{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--card-border)}.modal-header h2{font-size:16px;font-weight:600;color:var(--white)}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-dim)}.modal-body{padding:24px}
+.form-row{margin-bottom:16px}.form-row label{display:block;font-size:12px;font-weight:600;color:var(--white);margin-bottom:4px}.form-row input,.form-row select{width:100%}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-section{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--card-border);font-weight:600}
+.modal-footer{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-top:1px solid var(--card-border)}
+.toggle-track{width:36px;height:20px;border-radius:10px;background:#333;position:relative;display:inline-block;cursor:pointer}.toggle-track.on{background:var(--green-dark)}.toggle-knob{width:16px;height:16px;border-radius:50%;background:var(--white);position:absolute;top:2px;left:2px;transition:left .2s}.toggle-track.on .toggle-knob{left:18px}
+.filter-field label{display:block;font-size:11px;color:var(--text-dim);margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}.filter-field input,.filter-field select{min-width:140px}
+</style></head><body>
+<div class="wf-bar"><div class="wf-bar-left"><h1>Sarah — Team members & account management</h1><p>Mid-fidelity wireframe · Largely Magento B2B native · APL request workflow is custom</p></div><div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div></div>
+<div class="topbar">
+  <span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span>
+  <a href="#" class="topbar-btn accent">My account</a>
+  <a href="03-plp.html" class="topbar-btn">Browse all products</a>
+  <span class="topbar-spacer"></span>
+  <span class="topbar-account">Dawson Electrical — Account #40291</span>
+  <div class="avatar">SL</div>
+</div><nav class="subnav">
+  <a href="01-dashboard.html">Dashboard</a>
+  <a href="09-order-history.html">Orders</a>
+  <a href="02-uniform-embroidery.html">Uniforms</a>
+  <a href="#">Budgets</a>
+  <a href="#">Approvals <span class="badge">3</span></a>
+  <a href="#">Compliance docs</a>
+  <a href="#">Reports</a>
+  <a href="08-team-members.html" class="active">Users</a>
+</nav>
+<div class="layout"><aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div><a href="01-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a><a href="03-plp.html" class="sb-link"><span class="sb-dot blue"></span> Place an order</a></div>
+    <div class="sb-group"><div class="sb-label">Manage</div><a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals <span class="sb-badge">3</span></a><a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a><a href="02-uniform-embroidery.html" class="sb-link"><span class="sb-dot green"></span> Uniforms & logos</a><a href="08-team-members.html" class="sb-link active"><span class="sb-dot blue"></span> Team members</a></div>
+    <div class="sb-group"><div class="sb-label">Reports</div><a href="09-order-history.html" class="sb-link"><span class="sb-dot blue"></span> Order history</a><a href="#" class="sb-link"><span class="sb-dot green"></span> Compliance docs</a></div>
+    <div class="acct-rep" style="margin-top:20px"><div class="acct-rep-head">Your account rep</div><div class="acct-rep-name">Marcus T.</div><div class="acct-rep-role">RSEA Account Manager</div></div>
+  </aside>
+<main class="main">
+<div class="page-header flex-between"><div><h1>Team Members</h1><p>Manage employees, roles, site access for Dawson Electrical</p></div><div class="flex-gap"><span class="note">Largely native<span class="note-popup"><strong>Build note</strong>Team member list from Magento B2B Company. Custom: uniform profiles, APL requests.<span class="magento">Magento: B2B Company → company_users</span></span></span><button class="btn btn-primary" onclick="openModal(1)">+ Add team member</button></div></div>
+<div class="card"><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end"><div class="filter-field"><label>Name</label><input type="text" id="filterName" placeholder="Search..." oninput="filterTable()"></div><div class="filter-field"><label>Site</label><select id="filterSite" onchange="filterTable()"><option value="">All sites</option><option>Head Office</option><option>Ringwood</option><option>Dandenong</option></select></div><div class="filter-field"><label>Role</label><select id="filterRole" onchange="filterTable()"><option value="">All</option><option>Admin</option><option>Buyer</option><option>Viewer</option></select></div><div class="filter-field"><label>Status</label><select id="filterStatus" onchange="filterTable()"><option value="">All</option><option>Active</option><option>Inactive</option><option>Pending</option></select></div><div class="filter-field" style="align-self:flex-end"><button class="btn btn-outline btn-sm" onclick="clearFilters()">Clear</button></div></div></div>
+<div id="resultCount" style="font-size:12px;color:var(--text-dim);margin-bottom:12px"></div>
+<div class="card" style="padding:0;overflow:hidden"><table class="member-table"><thead><tr><th>Status</th><th>Name</th><th>Email</th><th>Site</th><th>Code</th><th>Job Title</th><th>Role</th><th>Actions</th></tr></thead><tbody id="tableBody"></tbody></table></div>
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><div class="modal-header"><h2 id="modalTitle">Edit Team Member</h2><button class="modal-close" onclick="closeModal()">✕</button></div><div class="modal-body"><div class="form-section">Personal Details</div><div class="form-row-2"><div class="form-row"><label>First Name</label><input type="text" id="editFirst"></div><div class="form-row"><label>Last Name</label><input type="text" id="editLast"></div></div><div class="form-row"><label>Email</label><input type="text" id="editEmail"></div><div class="form-section">Role & Access</div><div class="form-row-2"><div class="form-row"><label>Site</label><select id="editSite"><option>Head Office</option><option>Ringwood</option><option>Dandenong</option></select></div><div class="form-row"><label>Role</label><select id="editRole"><option>Admin</option><option>Buyer</option><option>Viewer</option></select></div></div><div class="form-row-2"><div class="form-row"><label>Employee Code</label><input type="text" id="editCode"></div><div class="form-row"><label>Job Title</label><input type="text" id="editTitle"></div></div><div class="form-section">Uniform Profile</div><div class="form-row-2"><div class="form-row"><label>Top Size</label><select><option>S</option><option>M</option><option selected>L</option><option>XL</option></select></div><div class="form-row"><label>Boot Size</label><select><option>7</option><option>8</option><option>9</option><option selected>10</option><option>11</option></select></div></div><div class="form-section">Status</div><div style="display:flex;justify-content:space-between;align-items:center"><div><label style="margin-bottom:0">Active</label><div style="font-size:11px;color:var(--text-dim)">Inactive members cannot log in</div></div><div class="toggle-track on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div></div><div class="modal-footer"><button class="btn btn-outline btn-sm" style="color:var(--red);border-color:rgba(248,113,113,.3)">Delete</button><div class="flex-gap"><button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="closeModal()">Save</button></div></div></div></div>
+<div style="display:flex;gap:12px;justify-content:flex-end;margin-top:16px"><a href="01-dashboard.html" class="btn btn-outline">← Dashboard</a><a href="09-order-history.html" class="btn btn-primary">Order history →</a></div>
+</main></div>
+<script src="../assets/shared.js"></script>
+<script>
+const employees=[
+{id:1,status:'Active',first:'Sarah',last:'Lawson',email:'sarah.lawson@dawsonelec.com.au',site:'Head Office',code:'DE-001',title:'Office Manager',role:'Admin'},
+{id:2,status:'Active',first:'Mike',last:'Davidson',email:'mike.davidson@dawsonelec.com.au',site:'Head Office',code:'DE-002',title:'Electrician',role:'Buyer'},
+{id:3,status:'Active',first:'Chris',last:'Palmer',email:'chris.palmer@dawsonelec.com.au',site:'Ringwood',code:'DE-003',title:'Apprentice',role:'Buyer'},
+{id:4,status:'Active',first:'Jake',last:'Thompson',email:'jake.thompson@dawsonelec.com.au',site:'Head Office',code:'DE-004',title:'Electrician',role:'Buyer'},
+{id:5,status:'Active',first:'Tina',last:'Nguyen',email:'tina.nguyen@dawsonelec.com.au',site:'Dandenong',code:'DE-005',title:'Office Admin',role:'Viewer'},
+{id:6,status:'Active',first:'Rob',last:'Martin',email:'rob.martin@dawsonelec.com.au',site:'Ringwood',code:'DE-006',title:'Foreman',role:'Buyer'},
+{id:7,status:'Active',first:'Lisa',last:'Park',email:'lisa.park@dawsonelec.com.au',site:'Dandenong',code:'DE-007',title:'Electrician',role:'Buyer'},
+{id:8,status:'Active',first:'Daniel',last:'Hughes',email:'daniel.hughes@dawsonelec.com.au',site:'Head Office',code:'DE-008',title:'Senior Electrician',role:'Buyer'},
+{id:9,status:'Active',first:'Emma',last:'Collins',email:'emma.collins@dawsonelec.com.au',site:'Ringwood',code:'DE-009',title:'Apprentice',role:'Buyer'},
+{id:10,status:'Inactive',first:'Nathan',last:'Reid',email:'nathan.reid@dawsonelec.com.au',site:'Dandenong',code:'DE-010',title:'Electrician',role:'Buyer'},
+{id:11,status:'Active',first:'Rachel',last:'Bennett',email:'rachel.bennett@dawsonelec.com.au',site:'Head Office',code:'DE-011',title:'Project Manager',role:'Admin'},
+{id:12,status:'Active',first:'Tom',last:'Watts',email:'tom.watts@dawsonelec.com.au',site:'Ringwood',code:'DE-012',title:'Electrician',role:'Buyer'},
+{id:13,status:'Pending',first:'Amy',last:'Fletcher',email:'amy.fletcher@dawsonelec.com.au',site:'Head Office',code:'DE-013',title:'Apprentice',role:'Buyer'},
+{id:14,status:'Active',first:'James',last:'Crawford',email:'james.crawford@dawsonelec.com.au',site:'Dandenong',code:'DE-014',title:'Foreman',role:'Buyer'},
+{id:15,status:'Active',first:'Sophie',last:'Murray',email:'sophie.murray@dawsonelec.com.au',site:'Head Office',code:'DE-015',title:'Office Admin',role:'Viewer'},
+{id:16,status:'Active',first:'Ben',last:'Marshall',email:'ben.marshall@dawsonelec.com.au',site:'Ringwood',code:'DE-016',title:'Electrician',role:'Buyer'},
+{id:17,status:'Active',first:'Grace',last:'Taylor',email:'grace.taylor@dawsonelec.com.au',site:'Dandenong',code:'DE-017',title:'Apprentice',role:'Buyer'},
+{id:18,status:'Active',first:'Luke',last:'Harrison',email:'luke.harrison@dawsonelec.com.au',site:'Head Office',code:'DE-018',title:'Electrician',role:'Buyer'},
+{id:19,status:'Inactive',first:'Megan',last:'Cooper',email:'megan.cooper@dawsonelec.com.au',site:'Ringwood',code:'DE-019',title:'Office Admin',role:'Viewer'},
+{id:20,status:'Active',first:'Steve',last:'Robertson',email:'steve.robertson@dawsonelec.com.au',site:'Dandenong',code:'DE-020',title:'Senior Electrician',role:'Buyer'}
+];
+function renderTable(d){document.getElementById('tableBody').innerHTML=d.map(e=>{const sc=e.status==='Active'?'active':e.status==='Inactive'?'inactive':'pending';const rc=e.role==='Admin'?'role-admin':e.role==='Buyer'?'role-buyer':'role-viewer';return '<tr><td><span class="status-dot '+sc+'"></span>'+e.status+'</td><td style="color:var(--white);font-weight:500">'+e.first+' '+e.last+'</td><td>'+e.email+'</td><td>'+e.site+'</td><td style="font-family:monospace;font-size:12px">'+e.code+'</td><td>'+e.title+'</td><td><span class="role-pill '+rc+'">'+e.role+'</span></td><td><div class="flex-gap"><button class="btn btn-outline btn-sm" onclick="openModal('+e.id+')">Edit</button><button class="btn btn-outline btn-sm" style="color:var(--red);border-color:rgba(248,113,113,.3)">Delete</button></div></td></tr>'}).join('');document.getElementById('resultCount').textContent='Showing '+d.length+' team members';}
+function filterTable(){const n=document.getElementById('filterName').value.toLowerCase();const s=document.getElementById('filterSite').value;const r=document.getElementById('filterRole').value;const st=document.getElementById('filterStatus').value;renderTable(employees.filter(e=>{if(n&&!(e.first+' '+e.last).toLowerCase().includes(n))return false;if(s&&e.site!==s)return false;if(r&&e.role!==r)return false;if(st&&e.status!==st)return false;return true}));}
+function clearFilters(){['filterName','filterSite','filterRole','filterStatus'].forEach(id=>document.getElementById(id).value='');renderTable(employees);}
+function openModal(id){const e=employees.find(x=>x.id===id);if(e){document.getElementById('modalTitle').textContent='Edit: '+e.first+' '+e.last;document.getElementById('editFirst').value=e.first;document.getElementById('editLast').value=e.last;document.getElementById('editEmail').value=e.email;document.getElementById('editSite').value=e.site;document.getElementById('editRole').value=e.role;document.getElementById('editCode').value=e.code;document.getElementById('editTitle').value=e.title;}document.getElementById('modalOverlay').classList.add('show');}
+function closeModal(e){if(e&&e.target!==document.getElementById('modalOverlay'))return;document.getElementById('modalOverlay').classList.remove('show');}
+renderTable(employees);
+</script></body></html>
