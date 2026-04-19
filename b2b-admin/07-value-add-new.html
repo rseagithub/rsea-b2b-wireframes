@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — New Value Add</title>
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.step-content{display:none}.step-content.active{display:block}
+.garment-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.garment-opt{background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px;text-align:center;cursor:pointer;transition:all .15s}
+.garment-opt:hover{border-color:var(--hivis)}
+.garment-opt.selected{border-color:var(--hivis);background:rgba(212,230,0,.06);box-shadow:0 0 0 1px var(--hivis)}
+.garment-opt .g-icon{font-size:28px;margin-bottom:6px}
+.garment-opt .g-label{font-size:12px;font-weight:600;color:var(--white)}
+.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.type-opt{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:20px;cursor:pointer;transition:all .15s}
+.type-opt:hover{border-color:var(--hivis)}
+.type-opt.selected{border-color:var(--hivis);background:rgba(212,230,0,.06)}
+.type-opt .t-icon{font-size:32px;margin-bottom:8px}
+.type-opt h3{font-size:14px;font-weight:600;color:var(--white)}
+.type-opt p{font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.4}
+.pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pos-opt{background:var(--card-bg);border:1px solid var(--card-border);border-radius:6px;padding:10px 14px;cursor:pointer;transition:all .15s;font-size:12px;color:var(--text-mid)}
+.pos-opt:hover{border-color:var(--hivis);color:var(--white)}
+.pos-opt.selected{border-color:var(--hivis);background:rgba(212,230,0,.06);color:var(--white);font-weight:600}
+.pos-opt.disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
+.style-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.style-opt{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:20px;cursor:pointer;transition:all .15s}
+.style-opt:hover{border-color:var(--hivis)}
+.style-opt.selected{border-color:var(--hivis);background:rgba(212,230,0,.06)}
+.colour-input{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.colour-swatch{width:32px;height:32px;border-radius:6px;border:2px solid var(--card-border);cursor:pointer}
+.upload-area{border:2px dashed var(--card-border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:all .15s}
+.upload-area:hover{border-color:var(--hivis)}
+.preview-panel{background:#2A2A2A;border:1px solid var(--card-border);border-radius:10px;padding:24px;text-align:center;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative}
+.preview-garment{font-size:80px;opacity:.4}
+.preview-badge{position:absolute;background:var(--hivis);color:var(--navy);font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px}
+.form-row{margin-bottom:16px}
+.form-row label{display:block;font-size:12px;font-weight:600;color:var(--white);margin-bottom:4px}
+.form-row input,.form-row select,.form-row textarea{width:100%;background:#2A2A2A;border:1px solid var(--card-border);color:var(--text);padding:10px 14px;border-radius:6px;font-size:13px;font-family:inherit}
+.form-row textarea{min-height:80px;resize:vertical}
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus{outline:none;border-color:var(--hivis)}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.summary-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--card-border);font-size:13px}
+.summary-row:last-child{border-bottom:none}
+.summary-label{color:var(--text-dim)}
+.summary-value{color:var(--white);font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="wf-bar">
+  <div class="wf-bar-left">
+    <h1>B2B Admin — Create new value add · 5-step wizard</h1>
+    <p>Garment → Type → Position &amp; Style → Customisation Details → Review &amp; Submit</p>
+  </div>
+  <div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div>
+</div>
+
+<div class="topbar">
+  <span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span>
+  <a href="#" class="topbar-btn accent">My account</a>
+  <span class="topbar-spacer"></span>
+  <span class="topbar-account">Dawson Electrical — Account #40291</span>
+  <div class="avatar">SL</div>
+</div>
+
+<nav class="subnav">
+  <a href="02-dashboard.html">Dashboard</a>
+  <a href="04-order-history.html">Orders</a>
+  <a href="#">Budgets</a>
+  <a href="#">Approvals <span class="badge">3</span></a>
+  <a href="05-address-book.html">Addresses</a>
+  <a href="06-value-add.html" class="active">Value Adds</a>
+  <a href="#">Quotes</a>
+  <a href="#">Requisitions</a>
+  <a href="03-team-members.html">Users</a>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div>
+      <a href="02-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a>
+      <a href="06-value-add.html" class="sb-link"><span class="sb-dot green"></span> Value add management</a>
+    </div>
+    <div class="acct-rep" style="margin-top:20px">
+      <div class="acct-rep-head">Your account rep</div>
+      <div class="acct-rep-name">Marcus T.</div>
+      <div class="acct-rep-role">RSEA Account Manager</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="06-value-add.html">Value Add Management</a> / New Value Add</div>
+    <div class="page-header"><h1>Create New Value Add</h1></div>
+
+    <!-- Steps -->
+    <div class="steps" id="stepIndicator">
+      <div class="step active" data-step="1"><div class="step-num">1</div> Garment</div><div class="step-line"></div>
+      <div class="step" data-step="2"><div class="step-num">2</div> Type</div><div class="step-line"></div>
+      <div class="step" data-step="3"><div class="step-num">3</div> Position & Style</div><div class="step-line"></div>
+      <div class="step" data-step="4"><div class="step-num">4</div> Details</div><div class="step-line"></div>
+      <div class="step" data-step="5"><div class="step-num">5</div> Review</div>
+    </div>
+
+    <!-- STEP 1: Select Garment Type -->
+    <div class="step-content active" data-step="1">
+      <div class="card">
+        <div class="card-header"><h3>Select garment type</h3>
+          <span class="note">Garment types<span class="note-popup"><strong>Logic note</strong>Garment type determines which positions are available for customisation. e.g. Upper body garments offer chest and sleeve positions, while pants only offer rear pocket positions. Headwear has its own set of positions.<span class="magento">Custom: garment_type → position_mapping</span></span></span>
+        </div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:10px;font-weight:600">Upper Body</div>
+        <div class="garment-grid">
+          <div class="garment-opt selected" onclick="selectGarment(this,'polo')"><div class="g-icon">👕</div><div class="g-label">Polo Shirt</div></div>
+          <div class="garment-opt" onclick="selectGarment(this,'button')"><div class="g-icon">👔</div><div class="g-label">Button-up Shirt</div></div>
+          <div class="garment-opt" onclick="selectGarment(this,'tee')"><div class="g-icon">👕</div><div class="g-label">Tee-shirt</div></div>
+          <div class="garment-opt" onclick="selectGarment(this,'jumper')"><div class="g-icon">🧥</div><div class="g-label">Jumper</div></div>
+          <div class="garment-opt" onclick="selectGarment(this,'jacket')"><div class="g-icon">🧥</div><div class="g-label">Jacket</div></div>
+          <div class="garment-opt" onclick="selectGarment(this,'vest')"><div class="g-icon">🦺</div><div class="g-label">Vest</div></div>
+        </div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 10px;font-weight:600">Lower Body</div>
+        <div class="garment-grid">
+          <div class="garment-opt" onclick="selectGarment(this,'pants')"><div class="g-icon">👖</div><div class="g-label">Pants</div></div>
+          <div class="garment-opt" onclick="selectGarment(this,'shorts')"><div class="g-icon">🩳</div><div class="g-label">Shorts</div></div>
+        </div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 10px;font-weight:600">Headwear</div>
+        <div class="garment-grid">
+          <div class="garment-opt" onclick="selectGarment(this,'cap')"><div class="g-icon">🧢</div><div class="g-label">Baseball Cap</div></div>
+        </div>
+        <div style="margin-top:20px;display:flex;justify-content:space-between">
+          <a href="06-value-add.html" class="btn btn-outline">← Cancel</a>
+          <button class="btn btn-primary" onclick="goToStep(2)">Next: Select type →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Customisation Type -->
+    <div class="step-content" data-step="2">
+      <div class="card">
+        <div class="card-header"><h3>Select customisation type</h3>
+          <span class="note">Type options<span class="note-popup"><strong>Logic note</strong>Each type has different characteristics: Embroidery is thread-based (premium, durable, uses stitch count). Screen Printing uses ink (good for large graphics, requires colour separation). Heat Press uses vinyl transfer (cost-effective, fast). Each type prompts for different configuration options.<span class="magento">Custom: customisation_type → config_options</span></span></span>
+        </div>
+        <div class="type-grid">
+          <div class="type-opt selected" onclick="selectType(this,'embroidery')">
+            <div class="t-icon">🧵</div>
+            <h3>Embroidery</h3>
+            <p>Thread-based. Premium finish, highly durable. Best for logos and text on all garment types. Requires stitch count and thread colour specification.</p>
+          </div>
+          <div class="type-opt" onclick="selectType(this,'screen')">
+            <div class="t-icon">🖨️</div>
+            <h3>Screen Printing</h3>
+            <p>Ink-based. Ideal for large graphics with bold colours. Best for tee-shirts, jackets. Requires colour separation and artwork preparation.</p>
+          </div>
+          <div class="type-opt" onclick="selectType(this,'heatpress')">
+            <div class="t-icon">🔥</div>
+            <h3>Heat Press</h3>
+            <p>Vinyl transfer. Cost-effective, fast turnaround. Good for simple logos and text. Available for all garment types.</p>
+          </div>
+        </div>
+        <div style="margin-top:20px;display:flex;justify-content:space-between">
+          <button class="btn btn-outline" onclick="goToStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="goToStep(3)">Next: Position & style →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Position & Style -->
+    <div class="step-content" data-step="3">
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Select position</h3>
+          <span class="note">Position mapping<span class="note-popup"><strong>Logic note</strong>Available positions depend on garment type selected in Step 1. Upper body: Left/Right Chest, Left/Right Sleeve, Rear Yoke, Centre Back. Lower body: Above Right/Left Rear Pocket. Headwear: Centre Front, Left/Right Side Profile, Above Rear Arch. Each position can only be used once per garment.<span class="magento">Custom: garment_type → position_mapping</span></span></span>
+          <div style="font-size:11px;color:var(--text-dim);margin:8px 0 12px">Showing positions for: <strong style="color:var(--white)">Polo Shirt</strong></div>
+          <div class="pos-grid">
+            <div class="pos-opt selected" onclick="selectPos(this)">📍 Left Hand Chest</div>
+            <div class="pos-opt" onclick="selectPos(this)">📍 Right Hand Chest</div>
+            <div class="pos-opt" onclick="selectPos(this)">📍 Left Hand Sleeve</div>
+            <div class="pos-opt" onclick="selectPos(this)">📍 Right Hand Sleeve</div>
+            <div class="pos-opt" onclick="selectPos(this)">📍 Rear Yoke</div>
+            <div class="pos-opt" onclick="selectPos(this)">📍 Centre Back</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Select style</h3>
+          <span class="note">Style options<span class="note-popup"><strong>Logic note</strong>Graphic: upload an image (AI, EPS, PNG). System captures colour count, whether editing is needed. Text: enter free text or use dynamic employee attributes ($employee.first_name etc). Admin can lock font or allow employees to customise at order time.<span class="magento">Custom: customisation_style → options</span></span></span>
+          <div class="style-grid" style="margin-top:12px">
+            <div class="style-opt selected" onclick="selectStyle(this,'graphic')">
+              <div style="font-size:28px;margin-bottom:8px">🖼️</div>
+              <h3 style="font-size:14px;font-weight:600;color:var(--white)">Graphic</h3>
+              <p style="font-size:11px;color:var(--text-dim);margin-top:4px">Upload a logo or image. Supports AI, EPS, PNG formats.</p>
+            </div>
+            <div class="style-opt" onclick="selectStyle(this,'text')">
+              <div style="font-size:28px;margin-bottom:8px">✏️</div>
+              <h3 style="font-size:14px;font-weight:600;color:var(--white)">Text</h3>
+              <p style="font-size:11px;color:var(--text-dim);margin-top:4px">Free text or dynamic employee name/initials. Choose font and size.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;display:flex;justify-content:space-between">
+        <button class="btn btn-outline" onclick="goToStep(2)">← Back</button>
+        <button class="btn btn-primary" onclick="goToStep(4)">Next: Customisation details →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Customisation Details -->
+    <div class="step-content" data-step="4">
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Customisation details</h3>
+
+          <div class="form-row"><label>Design name</label><input type="text" value="Dawson Logo — Left Chest" placeholder="e.g. Company Logo Left Chest"></div>
+          <div class="form-row"><label>Description</label><textarea placeholder="Describe the customisation for reference...">Company logo embroidered on left chest of polo shirts. Black thread on light garments.</textarea></div>
+
+          <!-- Graphic upload (shown for Graphic style) -->
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 8px;font-weight:600">Artwork</div>
+          <div class="upload-area">
+            <div style="font-size:32px;margin-bottom:8px">📁</div>
+            <div style="font-size:13px;color:var(--text-mid)">Drop artwork file here or click to browse</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:4px">Accepts AI, EPS, PNG · Max 10MB</div>
+            <div style="margin-top:12px;padding:8px 14px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:6px;font-size:12px;color:var(--green);display:inline-block">✓ dawson-logo-v3.ai uploaded</div>
+          </div>
+
+          <div class="form-row" style="margin-top:16px">
+            <label>How many colours in the graphic?</label>
+            <select><option>1 colour</option><option selected>2 colours</option><option>3 colours</option><option>4+ colours</option></select>
+          </div>
+          <div class="form-row">
+            <label>Does the graphic need editing before production?</label>
+            <select><option selected>No — ready for production</option><option>Yes — minor adjustments needed</option><option>Yes — significant editing required</option></select>
+          </div>
+
+          <!-- Size -->
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 8px;font-weight:600">Size</div>
+          <div class="form-row-2">
+            <div class="form-row"><label>Width (mm)</label><input type="number" value="65"></div>
+            <div class="form-row"><label>Height (mm)</label><input type="number" value="45"></div>
+          </div>
+          <div class="form-row"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--hivis)"> Constrain proportions</label></div>
+
+          <!-- Colours -->
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 8px;font-weight:600">Colour codes <span class="note" style="font-size:10px">Required<span class="note-popup"><strong>Logic note</strong>All colours in the customisation must be individually identified as hex codes (#000000 — #FFFFFF) to avoid ambiguity during production. Each customisation may reference multiple colours.<span class="magento">Custom: colour_code_capture</span></span></span></div>
+          <div class="colour-input"><div class="colour-swatch" style="background:#1A1A1A"></div><input type="text" value="#1A1A1A" style="width:120px"> <span style="font-size:12px;color:var(--text-mid)">Primary — Black</span></div>
+          <div class="colour-input"><div class="colour-swatch" style="background:#D4E600"></div><input type="text" value="#D4E600" style="width:120px"> <span style="font-size:12px;color:var(--text-mid)">Secondary — Hi-Vis Yellow</span></div>
+          <button class="btn btn-outline btn-sm" style="margin-top:4px">+ Add colour</button>
+
+          <!-- Embroidery-specific -->
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 8px;font-weight:600">Embroidery options</div>
+          <div class="form-row"><label>Estimated stitch count</label><input type="text" value="8,200" placeholder="Auto-calculated from artwork"></div>
+          <div class="form-row"><label>Alignment</label><select><option>Left</option><option selected>Centre</option><option>Right</option></select></div>
+
+          <!-- Dark garment options -->
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 8px;font-weight:600">Dark garment colour options</div>
+          <div style="background:var(--blue-bg);border:1px solid rgba(96,165,250,.2);border-radius:6px;padding:10px 14px;font-size:12px;color:var(--blue);margin-bottom:12px">ℹ️ If the base garment is a dark colour, alternate thread/print colours may be needed. Specify below.</div>
+          <div class="colour-input"><div class="colour-swatch" style="background:#FFFFFF"></div><input type="text" value="#FFFFFF" style="width:120px"> <span style="font-size:12px;color:var(--text-mid)">Primary on dark — White</span></div>
+          <div class="colour-input"><div class="colour-swatch" style="background:#D4E600"></div><input type="text" value="#D4E600" style="width:120px"> <span style="font-size:12px;color:var(--text-mid)">Secondary on dark — Hi-Vis Yellow</span></div>
+        </div>
+
+        <!-- Preview -->
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Preview</h3>
+          <span class="note">Visual preview<span class="note-popup"><strong>Logic note</strong>As customisations are configured, a visual preview is generated showing the base garment in the correct colour with all active customisations. The preview should be rotatable (front, back, sides). Each customisation is saved and synced to ERP.<span class="magento">Custom: design_preview_renderer</span></span></span>
+          <div class="preview-panel" style="margin-top:12px">
+            <div class="preview-garment">👕</div>
+            <div style="font-size:12px;color:var(--text-dim)">Polo Shirt — Front View</div>
+            <div class="preview-badge" style="top:100px;left:32%">LOGO</div>
+            <div style="display:flex;gap:8px;margin-top:16px">
+              <button class="btn btn-outline btn-sm" style="font-size:10px">Front</button>
+              <button class="btn btn-outline btn-sm" style="font-size:10px">Back</button>
+              <button class="btn btn-outline btn-sm" style="font-size:10px">Left</button>
+              <button class="btn btn-outline btn-sm" style="font-size:10px">Right</button>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;font-size:13px">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px;font-weight:600">Configuration summary</div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--text-dim)">Garment</span><span style="color:var(--white)">Polo Shirt</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--text-dim)">Type</span><span style="color:var(--white)">Embroidery</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--text-dim)">Position</span><span style="color:var(--white)">Left Hand Chest</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--text-dim)">Style</span><span style="color:var(--white)">Graphic</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--card-border)"><span style="color:var(--text-dim)">Size</span><span style="color:var(--white)">65mm × 45mm</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><span style="color:var(--text-dim)">Colours</span><span style="display:flex;gap:4px"><span style="width:16px;height:16px;border-radius:3px;background:#1A1A1A;border:1px solid #444;display:inline-block"></span><span style="width:16px;height:16px;border-radius:3px;background:#D4E600;border:1px solid #444;display:inline-block"></span></span></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;display:flex;justify-content:space-between">
+        <button class="btn btn-outline" onclick="goToStep(3)">← Back</button>
+        <button class="btn btn-primary" onclick="goToStep(5)">Next: Review & submit →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Review & Submit -->
+    <div class="step-content" data-step="5">
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-bottom:14px;color:var(--white)">Review value add design</h3>
+          <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">Please review all details before submitting. Once submitted, the design will be reviewed by RSEA's quality control team for production feasibility.</p>
+
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:10px;font-weight:600">Design</div>
+          <div class="summary-row"><span class="summary-label">Design name</span><span class="summary-value">Dawson Logo — Left Chest</span></div>
+          <div class="summary-row"><span class="summary-label">Description</span><span class="summary-value" style="max-width:280px;text-align:right">Company logo embroidered on left chest of polo shirts</span></div>
+
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 10px;font-weight:600">Configuration</div>
+          <div class="summary-row"><span class="summary-label">Garment type</span><span class="summary-value">Polo Shirt</span></div>
+          <div class="summary-row"><span class="summary-label">Customisation type</span><span class="summary-value">Embroidery</span></div>
+          <div class="summary-row"><span class="summary-label">Position</span><span class="summary-value">Left Hand Chest</span></div>
+          <div class="summary-row"><span class="summary-label">Style</span><span class="summary-value">Graphic</span></div>
+          <div class="summary-row"><span class="summary-label">Size</span><span class="summary-value">65mm × 45mm</span></div>
+          <div class="summary-row"><span class="summary-label">Stitch count</span><span class="summary-value">~8,200</span></div>
+          <div class="summary-row"><span class="summary-label">Alignment</span><span class="summary-value">Centre</span></div>
+          <div class="summary-row"><span class="summary-label">Artwork</span><span class="summary-value">dawson-logo-v3.ai ✓</span></div>
+
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:16px 0 10px;font-weight:600">Colours</div>
+          <div class="summary-row"><span class="summary-label">Light garments</span><span class="summary-value"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#1A1A1A;border:1px solid #444;vertical-align:middle;margin-right:4px"></span>#1A1A1A <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#D4E600;border:1px solid #444;vertical-align:middle;margin:0 4px"></span>#D4E600</span></div>
+          <div class="summary-row"><span class="summary-label">Dark garments</span><span class="summary-value"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #444;vertical-align:middle;margin-right:4px"></span>#FFFFFF <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#D4E600;border:1px solid #444;vertical-align:middle;margin:0 4px"></span>#D4E600</span></div>
+        </div>
+
+        <div>
+          <!-- Preview -->
+          <div class="card">
+            <h3 style="margin-bottom:14px;color:var(--white)">Design preview</h3>
+            <div class="preview-panel">
+              <div class="preview-garment">👕</div>
+              <div style="font-size:12px;color:var(--text-dim)">Polo Shirt — Front View</div>
+              <div class="preview-badge" style="top:100px;left:32%">LOGO</div>
+            </div>
+          </div>
+
+          <!-- Approval info -->
+          <div class="card">
+            <h3 style="margin-bottom:12px;color:var(--white)">What happens next</h3>
+            <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--card-border)"><div style="width:24px;height:24px;border-radius:50%;background:var(--hivis);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</div><div style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--white)">Design saved as draft</strong><br>Your design will be saved and you can review it before submitting.</div></div>
+            <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--card-border)"><div style="width:24px;height:24px;border-radius:50%;background:#333;color:var(--text-dim);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</div><div style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--white)">RSEA quality control review</strong><br>RSEA's team reviews for production feasibility (thread count, colour accuracy, size constraints).</div></div>
+            <div style="display:flex;gap:10px;padding:8px 0"><div style="width:24px;height:24px;border-radius:50%;background:#333;color:var(--text-dim);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</div><div style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--white)">Published to catalogue</strong><br>Approved designs sync to ERP and become available for ordering.</div></div>
+          </div>
+
+          <!-- Actions -->
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:14px" onclick="alert('Design submitted for RSEA review! (wireframe placeholder)');window.location.href='06-value-add.html'">Submit for RSEA review</button>
+            <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="alert('Saved as draft (wireframe placeholder)');window.location.href='06-value-add.html'">Save as draft</button>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px"><button class="btn btn-outline" onclick="goToStep(4)">← Back to details</button></div>
+    </div>
+
+  </main>
+</div>
+
+<script src="../assets/shared.js"></script>
+<script>
+function goToStep(n) {
+  document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+  document.querySelector('.step-content[data-step="'+n+'"]').classList.add('active');
+  document.querySelectorAll('.step').forEach(s => {
+    const sn = parseInt(s.dataset.step);
+    s.classList.remove('active','done');
+    if (sn === n) s.classList.add('active');
+    else if (sn < n) s.classList.add('done');
+  });
+  document.querySelectorAll('.step-line').forEach((c,i) => {c.classList.toggle('done', i < n-1)});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function selectGarment(el, type) {
+  document.querySelectorAll('.garment-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function selectType(el, type) {
+  document.querySelectorAll('.type-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function selectPos(el) {
+  document.querySelectorAll('.pos-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function selectStyle(el, style) {
+  document.querySelectorAll('.style-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+</script>
+</body>
+</html>

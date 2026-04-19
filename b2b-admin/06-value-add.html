@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA B2B — Value Add Management</title>
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.va-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:20px;transition:all .15s;cursor:pointer;display:flex;gap:16px;margin-bottom:12px}
+.va-card:hover{border-color:var(--hivis)}
+.va-preview{width:80px;height:80px;background:#2A2A2A;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.va-info{flex:1;min-width:0}
+.va-title{font-size:15px;font-weight:600;color:var(--white)}
+.va-desc{font-size:12px;color:var(--text-mid);margin-top:3px;line-height:1.4}
+.va-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.va-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.06);color:var(--text-mid)}
+.va-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;flex-shrink:0;gap:8px}
+.va-date{font-size:11px;color:var(--text-dim)}
+.status-flow{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:11px}
+.status-step{padding:3px 10px;border-radius:4px;background:rgba(255,255,255,.04);color:var(--text-dim)}
+.status-step.done{background:var(--green-bg);color:var(--green)}
+.status-step.current{background:var(--amber-bg);color:var(--amber)}
+.status-step.rejected{background:var(--red-bg);color:var(--red)}
+.status-arrow{color:var(--text-dim);font-size:10px}
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px}
+.filter-field label{display:block;font-size:11px;color:var(--text-dim);margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.filter-field input,.filter-field select{min-width:140px;background:#2A2A2A;border:1px solid var(--card-border);color:var(--text);padding:8px 12px;border-radius:6px;font-size:13px}
+
+/* Detail modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:400;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;width:640px;max-height:90vh;overflow-y:auto;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--card-border)}
+.modal-header h2{font-size:16px;font-weight:600;color:var(--white)}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-dim)}
+.modal-body{padding:24px}
+.modal-footer{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-top:1px solid var(--card-border)}
+.detail-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--card-border);font-size:13px}
+.detail-row:last-child{border-bottom:none}
+.detail-label{color:var(--text-dim);font-weight:500}
+.detail-value{color:var(--white);font-weight:500;text-align:right}
+.customisation-block{background:#2A2A2A;border-radius:8px;padding:14px;margin-top:12px}
+.customisation-block h4{font-size:12px;font-weight:600;color:var(--white);margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<div class="wf-bar">
+  <div class="wf-bar-left">
+    <h1>B2B Admin — Value add management · Embroidery, heat press, screen printing</h1>
+    <p>Mid-fidelity wireframe · Custom module · Approval workflow: Draft → User Approved → RSEA QC → Published</p>
+  </div>
+  <div class="wf-toggle"><button class="active" data-mode="annotated">Annotated</button><button data-mode="clean">Clean view</button></div>
+</div>
+
+<div class="topbar">
+  <span class="logo-pill">R//</span><span class="logo-text">RSEA Safety</span>
+  <a href="#" class="topbar-btn accent">My account</a>
+  <a href="#" class="topbar-btn">Browse all products</a>
+  <span class="topbar-spacer"></span>
+  <span class="topbar-account">Dawson Electrical — Account #40291</span>
+  <div class="avatar">SL</div>
+</div>
+
+<nav class="subnav">
+  <a href="02-dashboard.html">Dashboard</a>
+  <a href="04-order-history.html">Orders</a>
+  <a href="#">Budgets</a>
+  <a href="#">Approvals <span class="badge">3</span></a>
+  <a href="05-address-book.html">Addresses</a>
+  <a href="06-value-add.html" class="active">Value Adds</a>
+  <a href="#">Quotes</a>
+  <a href="#">Requisitions</a>
+  <a href="03-team-members.html">Users</a>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-group"><div class="sb-label">Quick Access</div>
+      <a href="02-dashboard.html" class="sb-link"><span class="sb-dot yellow"></span> Dashboard</a>
+      <a href="#" class="sb-link"><span class="sb-dot blue"></span> Place an order</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Manage</div>
+      <a href="03-team-members.html" class="sb-link"><span class="sb-dot blue"></span> Team members</a>
+      <a href="04-order-history.html" class="sb-link"><span class="sb-dot blue"></span> Order history</a>
+      <a href="06-value-add.html" class="sb-link active"><span class="sb-dot green"></span> Value add management</a>
+      <a href="#" class="sb-link"><span class="sb-dot purple"></span> Quote management</a>
+      <a href="05-address-book.html" class="sb-link"><span class="sb-dot blue"></span> Address book</a>
+    </div>
+    <div class="sb-group"><div class="sb-label">Finance</div>
+      <a href="#" class="sb-link"><span class="sb-dot amber"></span> Budgets</a>
+      <a href="#" class="sb-link"><span class="sb-dot purple"></span> Approvals <span class="sb-badge">3</span></a>
+    </div>
+    <div class="acct-rep" style="margin-top:20px">
+      <div class="acct-rep-head">Your account rep</div>
+      <div class="acct-rep-name">Marcus T.</div>
+      <div class="acct-rep-role">RSEA Account Manager</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-header flex-between">
+      <div>
+        <h1>Value Add Management</h1>
+        <p>Manage embroidery, heat press, and screen printing configurations for Dawson Electrical</p>
+      </div>
+      <div class="flex-gap">
+        <span class="note">Custom module
+          <span class="note-popup"><strong>Build note</strong>Value add management is a fully custom module. Allows admin users to create product customisation designs (embroidery, heat press, screen printing) that go through an approval workflow before being available for purchase. Each design is linked to a base garment type and includes positions, colours, and graphic/text customisations. Approved designs sync to ERP and become available in company catalogues.<span class="magento">Custom: value_add_management + ERP sync</span></span>
+        </span>
+        <a href="07-value-add-new.html" class="btn btn-primary">+ New value add</a>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card">
+      <div class="filter-bar">
+        <div class="filter-field">
+          <label>Search</label>
+          <input type="text" id="filterSearch" placeholder="Name, garment..." oninput="filterVAs()">
+        </div>
+        <div class="filter-field">
+          <label>Type</label>
+          <select id="filterType" onchange="filterVAs()">
+            <option value="">All types</option>
+            <option>Embroidery</option>
+            <option>Heat Press</option>
+            <option>Screen Printing</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label>Status</label>
+          <select id="filterStatus" onchange="filterVAs()">
+            <option value="">All statuses</option>
+            <option>Draft</option>
+            <option>User Approved</option>
+            <option>RSEA Review</option>
+            <option>Published</option>
+            <option>Rejected</option>
+            <option>Cancelled</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label>Garment</label>
+          <select id="filterGarment" onchange="filterVAs()">
+            <option value="">All garments</option>
+            <option>Polo Shirt</option>
+            <option>Button-up Shirt</option>
+            <option>Tee-shirt</option>
+            <option>Jacket</option>
+            <option>Vest</option>
+            <option>Pants</option>
+            <option>Cap</option>
+          </select>
+        </div>
+        <div class="filter-field" style="align-self:flex-end">
+          <button class="btn btn-outline btn-sm" onclick="clearFilters()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status legend -->
+    <div style="display:flex;gap:12px;margin-bottom:16px;font-size:11px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:4px"><span class="pill pill-blue" style="font-size:9px">Draft</span> In progress</div>
+      <div style="display:flex;align-items:center;gap:4px"><span class="pill pill-purple" style="font-size:9px">User Approved</span> Awaiting RSEA</div>
+      <div style="display:flex;align-items:center;gap:4px"><span class="pill pill-amber" style="font-size:9px">RSEA Review</span> QC in progress</div>
+      <div style="display:flex;align-items:center;gap:4px"><span class="pill pill-green" style="font-size:9px">Published</span> Available to order</div>
+      <div style="display:flex;align-items:center;gap:4px"><span class="pill pill-red" style="font-size:9px">Rejected</span> Needs revision</div>
+    </div>
+
+    <div id="resultCount" style="font-size:12px;color:var(--text-dim);margin-bottom:12px"></div>
+
+    <!-- Value Add List -->
+    <div id="vaList"></div>
+
+    <!-- Annotations -->
+    <div style="margin-top:24px">
+      <span class="note">Approval workflow
+        <span class="note-popup"><strong>Logic note</strong>Workflow states: Draft → User Approved (admin confirms design) → RSEA Review (RSEA QC team checks print/embroidery feasibility) → Published (synced to ERP, available in catalogues). Rejected designs return to draft with a reason from RSEA QC. Admin can revise and resubmit. Each state change triggers a notification email.<span class="magento">Custom: value_add_approval_workflow</span></span>
+      </span>
+      <span class="note" style="margin-left:8px">ERP sync
+        <span class="note-popup"><strong>Logic note</strong>Published value adds are synced to ERP for production reference. The ERP system stores the full design specification including base garment, customisations, colour codes, and graphic files. Two-way sync may be required if designs can also be managed from the ERP side — this needs further investigation.<span class="magento">Custom: ERP sync API → RSEA-775 dependency</span></span>
+      </span>
+      <span class="note" style="margin-left:8px">Pricing
+        <span class="note-popup"><strong>Logic note — Open question</strong>Is customisation pricing based on size (height × width), number of colours, stitch count, or a flat rate per type? This affects how pricing is calculated and displayed during checkout. Workshop decision required.<span class="magento">Custom: value_add_pricing engine</span></span>
+      </span>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:20px">
+      <a href="02-dashboard.html" class="btn btn-outline">← Dashboard</a>
+      <a href="07-value-add-new.html" class="btn btn-primary">+ Create new value add →</a>
+    </div>
+  </main>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2 id="modalTitle">Value Add Details</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<script src="../assets/shared.js"></script>
+<script>
+const valueAdds = [
+  {
+    id:'VA-001', name:'Dawson Logo — Left Chest', type:'Embroidery', style:'Graphic',
+    garment:'Polo Shirt', position:'Left Hand Chest', status:'Published',
+    desc:'Company logo embroidered on left chest. Black thread on light garments, white thread on dark garments.',
+    colours:['#1A1A1A','#D4E600'], size:'65mm × 45mm', stitchCount:'8,200',
+    created:'12 Jan 2024', approved:'15 Jan 2024', published:'18 Jan 2024',
+    graphic:'dawson-logo-v3.ai', notes:'Approved for all polo shirt colours.'
+  },
+  {
+    id:'VA-002', name:'Safety First — Centre Back', type:'Heat Press', style:'Graphic',
+    garment:'Jacket', position:'Centre Back', status:'Published',
+    desc:'Large "SAFETY FIRST" graphic with Dawson branding heat pressed on centre back of all hi-vis jackets.',
+    colours:['#1A1A1A','#FFFFFF'], size:'280mm × 120mm', stitchCount:'N/A',
+    created:'20 Jan 2024', approved:'22 Jan 2024', published:'28 Jan 2024',
+    graphic:'safety-first-back-v2.png', notes:'Approved for yellow and orange hi-vis jackets only.'
+  },
+  {
+    id:'VA-003', name:'Employee Name — Right Chest', type:'Embroidery', style:'Text',
+    garment:'Polo Shirt', position:'Right Hand Chest', status:'RSEA Review',
+    desc:'Dynamic employee name (First Initial + Last Name) embroidered on right chest. Employee can confirm name at time of order.',
+    colours:['#1A1A1A'], size:'80mm × 15mm', stitchCount:'~1,200 per name',
+    created:'5 Mar 2024', approved:'10 Mar 2024', published:'—',
+    graphic:'N/A — Text', notes:'Awaiting RSEA QC approval for font and thread weight.'
+  },
+  {
+    id:'VA-004', name:'Dawson Icon — Left Sleeve', type:'Embroidery', style:'Graphic',
+    garment:'Button-up Shirt', position:'Left Hand Sleeve', status:'Draft',
+    desc:'Small Dawson lightning bolt icon for left sleeve of button-up work shirts.',
+    colours:['#D4E600','#1A1A1A'], size:'35mm × 35mm', stitchCount:'3,400',
+    created:'14 Mar 2024', approved:'—', published:'—',
+    graphic:'dawson-icon-bolt.ai', notes:'Draft — not yet submitted for approval.'
+  },
+  {
+    id:'VA-005', name:'Hi-Vis Stripe ID — Rear Yoke', type:'Screen Printing', style:'Graphic',
+    garment:'Vest', position:'Rear Yoke', status:'Rejected',
+    desc:'Reflective company ID stripe with Dawson name for rear yoke of safety vests.',
+    colours:['#FFFFFF','#D4E600'], size:'200mm × 40mm', stitchCount:'N/A',
+    created:'1 Feb 2024', approved:'5 Feb 2024', published:'—',
+    graphic:'dawson-stripe-id.png', notes:'Rejected by RSEA QC: Reflective material not compatible with screen printing at this size. Recommend heat press method instead.'
+  }
+];
+
+function statusPill(s) {
+  const m = {'Draft':'pill-blue','User Approved':'pill-purple','RSEA Review':'pill-amber','Published':'pill-green','Rejected':'pill-red','Cancelled':'pill-red'};
+  return '<span class="pill '+(m[s]||'pill-blue')+'">'+s+'</span>';
+}
+
+function typeIcon(t) {
+  const m = {'Embroidery':'🧵','Heat Press':'🔥','Screen Printing':'🖨️'};
+  return m[t] || '🧵';
+}
+
+function statusFlow(s) {
+  const steps = ['Draft','User Approved','RSEA Review','Published'];
+  let html = '<div class="status-flow">';
+  for (let i = 0; i < steps.length; i++) {
+    let cls = 'status-step';
+    const idx = steps.indexOf(s);
+    if (s === 'Rejected' && i <= 1) cls += ' done';
+    else if (s === 'Rejected' && i === 2) cls += ' rejected';
+    else if (i < idx) cls += ' done';
+    else if (steps[i] === s) cls += ' current';
+    html += '<span class="'+cls+'">'+steps[i]+'</span>';
+    if (i < steps.length - 1) html += '<span class="status-arrow">→</span>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderVAs(data) {
+  document.getElementById('vaList').innerHTML = data.map(va => `
+    <div class="va-card" onclick="openDetail('${va.id}')">
+      <div class="va-preview">${typeIcon(va.type)}</div>
+      <div class="va-info">
+        <div class="va-title">${va.name}</div>
+        <div class="va-desc">${va.desc}</div>
+        <div class="va-meta">
+          <span class="va-tag">${va.type}</span>
+          <span class="va-tag">${va.style}</span>
+          <span class="va-tag">${va.garment}</span>
+          <span class="va-tag">📍 ${va.position}</span>
+        </div>
+        ${statusFlow(va.status)}
+      </div>
+      <div class="va-right">
+        ${statusPill(va.status)}
+        <div class="va-date">Created ${va.created}</div>
+        <button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openDetail('${va.id}')">View details</button>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('resultCount').textContent = 'Showing ' + data.length + ' value add' + (data.length !== 1 ? 's' : '');
+}
+
+function filterVAs() {
+  const q = document.getElementById('filterSearch').value.toLowerCase();
+  const type = document.getElementById('filterType').value;
+  const status = document.getElementById('filterStatus').value;
+  const garment = document.getElementById('filterGarment').value;
+  renderVAs(valueAdds.filter(va => {
+    if (q && !(va.name + va.desc + va.garment).toLowerCase().includes(q)) return false;
+    if (type && va.type !== type) return false;
+    if (status && va.status !== status) return false;
+    if (garment && va.garment !== garment) return false;
+    return true;
+  }));
+}
+
+function clearFilters() {
+  ['filterSearch','filterType','filterStatus','filterGarment'].forEach(id => document.getElementById(id).value = '');
+  renderVAs(valueAdds);
+}
+
+function openDetail(id) {
+  const va = valueAdds.find(v => v.id === id);
+  if (!va) return;
+  document.getElementById('modalTitle').textContent = va.name + ' — ' + va.id;
+
+  const colourDots = va.colours.map(c => `<span style="display:inline-block;width:20px;height:20px;border-radius:4px;background:${c};border:1px solid #444;vertical-align:middle;margin-right:4px"></span><span style="font-family:monospace;font-size:11px;color:var(--text-mid);margin-right:10px">${c}</span>`).join('');
+
+  document.getElementById('modalBody').innerHTML = `
+    <div style="display:flex;gap:16px;margin-bottom:16px">
+      <div style="width:100px;height:100px;background:#2A2A2A;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">${typeIcon(va.type)}</div>
+      <div>
+        <div style="font-size:16px;font-weight:600;color:var(--white)">${va.name}</div>
+        <div style="font-size:13px;color:var(--text-mid);margin-top:4px">${va.desc}</div>
+        <div style="margin-top:8px">${statusPill(va.status)}</div>
+      </div>
+    </div>
+    ${statusFlow(va.status)}
+    ${va.status === 'Rejected' ? '<div style="background:var(--red-bg);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--red);margin-top:12px;display:flex;align-items:flex-start;gap:8px">❌ <div><strong style="display:block">Rejected by RSEA QC</strong>' + va.notes + '</div></div>' : ''}
+
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:20px 0 10px;font-weight:600">Configuration</div>
+    <div class="detail-row"><span class="detail-label">Type</span><span class="detail-value">${va.type}</span></div>
+    <div class="detail-row"><span class="detail-label">Style</span><span class="detail-value">${va.style}</span></div>
+    <div class="detail-row"><span class="detail-label">Garment</span><span class="detail-value">${va.garment}</span></div>
+    <div class="detail-row"><span class="detail-label">Position</span><span class="detail-value">${va.position}</span></div>
+    <div class="detail-row"><span class="detail-label">Size</span><span class="detail-value">${va.size}</span></div>
+    ${va.type === 'Embroidery' ? '<div class="detail-row"><span class="detail-label">Stitch Count</span><span class="detail-value">' + va.stitchCount + '</span></div>' : ''}
+    <div class="detail-row"><span class="detail-label">Graphic / Source</span><span class="detail-value">${va.graphic}</span></div>
+
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:20px 0 10px;font-weight:600">Colours</div>
+    <div style="padding:8px 0">${colourDots}</div>
+
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:20px 0 10px;font-weight:600">Timeline</div>
+    <div class="detail-row"><span class="detail-label">Created</span><span class="detail-value">${va.created}</span></div>
+    <div class="detail-row"><span class="detail-label">User Approved</span><span class="detail-value">${va.approved}</span></div>
+    <div class="detail-row"><span class="detail-label">Published</span><span class="detail-value">${va.published}</span></div>
+
+    ${va.notes && va.status !== 'Rejected' ? '<div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin:20px 0 10px;font-weight:600">Notes</div><div style="font-size:13px;color:var(--text-mid);line-height:1.5">' + va.notes + '</div>' : ''}
+  `;
+
+  let footerHtml = '';
+  if (va.status === 'Draft') {
+    footerHtml = `<button class="btn btn-outline btn-sm" style="color:var(--red);border-color:rgba(248,113,113,.3)">Cancel design</button><div class="flex-gap"><button class="btn btn-outline" onclick="closeModal()">Close</button><button class="btn btn-primary" onclick="closeModal()">Submit for approval</button></div>`;
+  } else if (va.status === 'Rejected') {
+    footerHtml = `<button class="btn btn-outline btn-sm" style="color:var(--red);border-color:rgba(248,113,113,.3)">Cancel design</button><div class="flex-gap"><button class="btn btn-outline" onclick="closeModal()">Close</button><button class="btn btn-primary" onclick="closeModal()">Revise &amp; resubmit</button></div>`;
+  } else if (va.status === 'Published') {
+    footerHtml = `<div style="font-size:11px;color:var(--text-dim)">Published designs cannot be edited</div><button class="btn btn-outline" onclick="closeModal()">Close</button>`;
+  } else {
+    footerHtml = `<div style="font-size:11px;color:var(--text-dim)">Awaiting review</div><button class="btn btn-outline" onclick="closeModal()">Close</button>`;
+  }
+  document.getElementById('modalFooter').innerHTML = footerHtml;
+
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay')) return;
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+renderVAs(valueAdds);
+</script>
+</body>
+</html>
