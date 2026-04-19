@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSEA Safety B2B — Platform Wireframes</title>
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+.idx-header{padding:48px 40px 32px;border-bottom:3px solid var(--hivis)}
+.idx-header h1{font-size:28px;font-weight:800;color:var(--white);letter-spacing:.5px}
+.idx-header h1 span{color:var(--hivis)}
+.idx-header p{color:var(--text-dim);font-size:14px;margin-top:6px}
+.idx-content{max-width:900px;margin:0 auto;padding:40px}
+.section-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--hivis);margin-bottom:16px;font-weight:700}
+.journey-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:40px}
+.journey-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;text-decoration:none;color:var(--text);transition:all .25s;display:flex;flex-direction:column;gap:12px}
+.journey-card:hover{background:rgba(212,230,0,.04);border-color:var(--hivis);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3);text-decoration:none}
+.journey-card .jc-icon{font-size:36px}
+.journey-card h2{font-size:18px;font-weight:700;color:var(--white)}
+.journey-card p{font-size:13px;color:var(--text-mid);line-height:1.5}
+.journey-card .jc-meta{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.journey-card .jc-tag{font-size:10px;font-weight:600;padding:3px 10px;border-radius:10px;border:1px solid var(--card-border);color:var(--text-mid)}
+.journey-card .jc-status{font-size:10px;font-weight:600;padding:3px 10px;border-radius:10px}
+.jc-status.live{background:var(--green-bg);color:var(--green)}
+.jc-status.coming{background:var(--amber-bg);color:var(--amber)}
+.journey-card.disabled{opacity:.45;pointer-events:none}
+.stats{display:flex;gap:32px;margin-bottom:40px}
+.stat .stat-value{font-size:32px;font-weight:800;color:var(--hivis)}
+.stat .stat-label{font-size:12px;color:var(--text-dim);margin-top:2px}
+.persona-note{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px;font-size:13px;color:var(--text-mid);margin-top:16px}
+.persona-note strong{color:var(--white)}
+</style>
+</head>
+<body>
+
+<div class="idx-header">
+  <h1><span>RSEA SAFETY</span> — B2B Platform Wireframes</h1>
+  <p>Adobe Commerce (Magento) · Mid-fidelity desktop wireframes · Select a journey to explore</p>
+</div>
+
+<div class="idx-content">
+  <div class="stats">
+    <div class="stat"><div class="stat-value">5</div><div class="stat-label">Journeys</div></div>
+    <div class="stat"><div class="stat-value">14</div><div class="stat-label">Screens built</div></div>
+    <div class="stat"><div class="stat-value">64</div><div class="stat-label">Features mapped</div></div>
+    <div class="stat"><div class="stat-value">7</div><div class="stat-label">Personas defined</div></div>
+  </div>
+
+  <!-- ============ LOGGED OUT EXPERIENCE ============ -->
+  <div class="section-title">Logged-Out Experience</div>
+  <p style="font-size:13px;color:var(--text-mid);margin:-8px 0 16px">Public-facing pages visible to all visitors before authentication. No e-commerce features. RRP pricing only.</p>
+  <div class="journey-grid" style="grid-template-columns:1fr">
+    <a href="logged-out-journey/01-homepage.html" class="journey-card" style="flex-direction:row;align-items:center;gap:20px">
+      <div class="jc-icon" style="font-size:40px;flex-shrink:0">🔒</div>
+      <div style="flex:1">
+        <h2>Logged-Out Journey</h2>
+        <p>Pre-authentication experience. Public homepage, product catalogue (RRP pricing only), login &amp; company registration, and contact page. Same header &amp; footer as logged-in users. No add-to-cart, wishlist, or account features.</p>
+      </div>
+      <div class="jc-meta" style="flex-direction:column;align-items:flex-end;flex-shrink:0">
+        <span class="jc-status live">5 screens live</span>
+        <span class="jc-tag">Pre-login experience</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ============ PURE B2B (WITHOUT UMS) ============ -->
+  <div class="section-title">Pure B2B — without Uniform Management (UMS)</div>
+  <p style="font-size:13px;color:var(--text-mid);margin:-8px 0 16px">Standard B2B portal experience for companies that don't require uniform or embroidery services. Covers catalogue, ordering, approvals, budgets, compliance, and team management.</p>
+  <div class="journey-grid">
+    <a href="b2b-admin/01-homepage.html" class="journey-card">
+      <div class="jc-icon">🛡️</div>
+      <h2>Admin User</h2>
+      <p>Full portal access. Manages team members, sets budgets and approval thresholds, views all orders across sites, configures value add options, and approves purchase requests. Starts from the public homepage with pre-filled login.</p>
+      <div class="jc-meta">
+        <span class="jc-status live">In progress</span>
+        <span class="jc-tag">Full access</span>
+        <span class="jc-tag">Budget &amp; approval control</span>
+      </div>
+    </a>
+    <div class="journey-card disabled">
+      <div class="jc-icon">🛒</div>
+      <h2>Buyer User</h2>
+      <p>Browses catalogue, places orders within their approval limit, views own order history. Cannot manage team members, budgets, or company settings. Orders above threshold route to admin for approval.</p>
+      <div class="jc-meta">
+        <span class="jc-status coming">Planned</span>
+        <span class="jc-tag">Restricted access</span>
+        <span class="jc-tag">Orders within limit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B2B WITH UMS ============ -->
+  <div class="section-title">B2B with Uniform Management (UMS)</div>
+  <p style="font-size:13px;color:var(--text-mid);margin:-8px 0 16px">Full B2B portal plus uniform management system — employee entitlements, embroidery &amp; logo configuration, placement diagrams, digital proof approval, and size profile management.</p>
+  <div class="journey-grid">
+    <div class="journey-card disabled">
+      <div class="jc-icon">👔</div>
+      <h2>Admin User + UMS</h2>
+      <p>Everything in the standard admin journey, plus: manages employee uniform profiles and entitlements, configures approved logo library, reviews decoration proofs, and controls uniform budgets per site.</p>
+      <div class="jc-meta">
+        <span class="jc-status coming">Planned</span>
+        <span class="jc-tag">Full access + uniforms</span>
+        <span class="jc-tag">Logo &amp; entitlement management</span>
+      </div>
+    </div>
+    <div class="journey-card disabled">
+      <div class="jc-icon">👕</div>
+      <h2>Buyer User + UMS</h2>
+      <p>Standard buyer access plus the ability to place uniform orders for themselves or assigned employees. Selects garments, configures embroidery, approves proofs within their entitlement allocation.</p>
+      <div class="jc-meta">
+        <span class="jc-status coming">Planned</span>
+        <span class="jc-tag">Restricted access + uniforms</span>
+        <span class="jc-tag">Self-service ordering</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ LEGACY / REFERENCE ============ -->
+  <div class="section-title">Reference Journeys</div>
+  <p style="font-size:13px;color:var(--text-mid);margin:-8px 0 16px">Earlier wireframe explorations used as reference for the current build.</p>
+  <div class="journey-grid" style="grid-template-columns:1fr">
+    <a href="sme-office-manager/01-dashboard.html" class="journey-card" style="flex-direction:row;align-items:center;gap:20px;opacity:.7">
+      <div class="jc-icon" style="font-size:40px;flex-shrink:0">👩‍💼</div>
+      <div style="flex:1">
+        <h2>SME Office Manager — Sarah (Original)</h2>
+        <p>Original wireframe exploration for the Sarah persona. Dashboard, catalogue, ordering, uniforms, checkout, team management, and order history. Used as the foundation for the current B2B Admin journey above.</p>
+      </div>
+      <div class="jc-meta" style="flex-direction:column;align-items:flex-end;flex-shrink:0">
+        <span class="jc-tag">9 screens</span>
+        <span class="jc-tag">Reference only</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="persona-note">
+    <strong>Platform context:</strong> RSEA Safety is migrating its B2B customer portal to Adobe Commerce (Magento). The Uniform Management System (UMS) is the largest custom module — covering employee entitlements, embroidery/heat press configuration, logo libraries, placement diagrams, and digital proof approval. Companies can be onboarded with or without UMS depending on their needs. 64 features across 8 capability buckets. Key differentiators: compliance document hub, budget &amp; approval engine, UMS, predictive reorder, and APL management.
+  </div>
+</div>
+
+</body>
+</html>
